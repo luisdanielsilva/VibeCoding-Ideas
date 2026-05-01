@@ -3,7 +3,7 @@ name: 🚀 Deploy VibeCoding Ideas
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   web-deploy:
