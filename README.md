@@ -22,8 +22,8 @@ This repository uses **GitHub Actions** to automatically sync changes to your we
 ### Setup Required:
 To make this work, go to your GitHub Repository **Settings > Secrets and variables > Actions** and add the following **Repository secrets**:
 
-1. `FTP_SERVER`: `ftpupload.net`
-2. `FTP_USERNAME`: `if0_41673076`
+1. `FTP_SERVER`: (Your FTP Host, e.g., ftpupload.net)
+2. `FTP_USERNAME`: (Your FTP Username)
 3. `FTP_PASSWORD`: (Your vPanel password)
 
 Once these are set, every `git push` to the `master` branch will trigger a deployment to your `/htdocs/ideas` folder.
