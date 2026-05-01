@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VibeCoding Ideas | App Roadmap</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>VibeCoding Ideas</h1>
+            <p class="subtitle">A public log of app concepts and implementation plans.</p>
+        </header>
+
+        <main id="ideas-container">
+            <!-- Ideas will be injected here by script.js -->
+            <div class="loading">Loading ideas...</div>
+        </main>
+
+        <footer>
+            <p>&copy; 2026 VibeCoding. Built with focus.</p>
+        </footer>
+    </div>
+
+    <!-- Modal for expanded idea view -->
+    <div id="idea-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Lightbox for high-res images -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img class="lightbox-image" id="lightbox-img">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

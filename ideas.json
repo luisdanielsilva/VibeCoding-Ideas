@@ -1,0 +1,178 @@
+[
+    {
+        "id": "VC-001",
+        "title": "FileLister",
+        "status": "Completed",
+        "excerpt": "A powerful duplicate file management tool for macOS and cross-platform use.",
+        "full_description": "FileLister is a specialized utility designed to regain storage space by identifying and managing duplicate files. It uses deep cryptographic hashing (SHA-256) to ensure 100% accuracy, moving beyond simple name or size comparisons. It supports local drives, external storage, and cloud-synced folders like OneDrive or Google Drive.",
+        "features": [
+            "SHA-256 Deep Scanning",
+            "Multi-threaded Performance",
+            "Safety Lock Protection",
+            "Media & Hidden File Filtering",
+            "Auto-Selection Rules",
+            "Action Logging"
+        ],
+        "stages": [
+            "Native macOS (Swift/SwiftUI) Implementation",
+            "Cross-Platform Python/PySide6 Port",
+            "Advanced Filtering & Rule System",
+            "Performance Optimization for Large Volumes",
+            "Deployment & Notarization Workflow"
+        ],
+        "advantages": [
+            "Zero false positives with hash verification",
+            "Extremely fast multi-threaded engine",
+            "Prevents accidental data loss",
+            "Clean, premium user interface"
+        ],
+        "pitfalls": [
+            "High RAM usage on multi-million file scans",
+            "OS-specific trash handling complexities",
+            "Cloud-only file (on-demand) access issues"
+        ],
+        "timestamp": "2026-04-10",
+        "images": ["assets/filelister_mockup.png"]
+    },
+    {
+        "id": "VC-002",
+        "title": "VibeCoding Ideas",
+        "status": "In Progress",
+        "excerpt": "A public documentation portal for app concepts and implementation roadmaps.",
+        "full_description": "VibeCoding Ideas is a minimal, content-focused portal designed to publicly document app concepts. It serves as a bridge between rough ideas and full development, providing a space for AI-assisted expansion of descriptions and technical implementation plans.",
+        "features": [
+            "Minimal Glassmorphism Design",
+            "Dynamic JSON-based Content",
+            "AI-Assisted Concept Expansion",
+            "Detailed Implementation Roadmaps",
+            "Automated FTP Deployment",
+            "Responsive Modal Interaction"
+        ],
+        "stages": [
+            "Portal Architecture & Design Tokens",
+            "JSON Data Schema Definition",
+            "Dynamic Rendering Logic (JS)",
+            "AI Forge Integration for Content",
+            "Deployment Automation Scripting"
+        ],
+        "advantages": [
+            "Public accountability for projects",
+            "Easy documentation of initial sparks",
+            "Ready-to-use implementation plans",
+            "Lightweight and extremely fast"
+        ],
+        "pitfalls": [
+            "Requires manual data entry for new ideas",
+            "Potential for 'idea bloat' without execution",
+            "Static nature limits complex interactions"
+        ],
+        "timestamp": "2026-05-01",
+        "images": ["assets/vibecoding_mockup.png"]
+    },
+    {
+        "id": "VC-003",
+        "title": "DrawIO to Mermaid Converter",
+        "status": "Concept",
+        "excerpt": "A tool to convert visual DrawIO diagrams into maintainable Mermaid.js code.",
+        "full_description": "This tool aims to bridge the gap between visual diagramming and 'Diagrams as Code'. By converting XML-based DrawIO files into Mermaid.js syntax, it allows developers to store diagrams directly in their Git repositories in a readable, diff-able text format.",
+        "features": [
+            "XML/Compressed DrawIO Parsing",
+            "Mermaid.js Syntax Generation",
+            "Live Preview Side-by-Side",
+            "Support for Flowcharts & Sequences",
+            "Batch Conversion Utility",
+            "Git-Friendly Export"
+        ],
+        "stages": [
+            "DrawIO XML Schema Research",
+            "Translation Logic Development",
+            "Web-based Conversion Interface",
+            "Mermaid.js Preview Integration",
+            "CLI tool for CI/CD pipelines"
+        ],
+        "advantages": [
+            "Makes diagrams searchable and diff-able",
+            "Eliminates binary/image file bloat in Git",
+            "Fast iteration through text editing",
+            "Platform independent (Mermaid is universal)"
+        ],
+        "pitfalls": [
+            "Complex DrawIO shapes may not map 1:1",
+            "Styling/Colors might be lost in translation",
+            "DrawIO's nested group structures are complex"
+        ],
+        "timestamp": "2026-05-01",
+        "images": ["assets/drawio_mockup.png"]
+    },
+    {
+        "id": "VC-004",
+        "title": "Agenda Creator",
+        "status": "Concept",
+        "excerpt": "Smart workshop and meeting organizer that optimizes for participant availability.",
+        "full_description": "Agenda Creator automates the coordination of complex workshops and meetings. It collects topics from participants, analyzes their availability, and intelligently finds the best time slot. It then organizes the full workshop schedule and sends automated calendar invites and organized emails.",
+        "features": [
+            "Topic/Agenda Point Collection",
+            "Participant Availability Analysis",
+            "Optimal Slot Recommendation",
+            "Excel/CSV Input Support",
+            "Automated Email Distribution",
+            "Calendar Event Integration"
+        ],
+        "stages": [
+            "Availability Collection Logic",
+            "Agenda Optimization Algorithm",
+            "Email Template Engine",
+            "Calendar API Integrations",
+            "Workshop Management Dashboard"
+        ],
+        "advantages": [
+            "Drastically reduces coordination overhead",
+            "Optimizes time spent in the office",
+            "Ensures all high-priority topics are covered",
+            "Seamless calendar management"
+        ],
+        "pitfalls": [
+            "Complexity of multi-timezone scheduling",
+            "Varying calendar API permissions",
+            "Participant delay in providing topics"
+        ],
+        "timestamp": "2026-05-01",
+        "images": ["assets/agenda_mockup.png"]
+    },
+    {
+        "id": "VC-005",
+        "title": "PropInsight",
+        "status": "Concept",
+        "excerpt": "Automated real-estate market analyzer and historical price tracker.",
+        "full_description": "PropInsight is an intelligent real-estate data aggregator designed to provide a comprehensive overview of local property markets. By autonomously scanning major real-estate portals, it captures and cross-references critical data points including historical pricing, geographic distribution, and visual assets.",
+        "features": [
+            "Automated Price Tracking",
+            "Historical Data Archiving",
+            "Spatial Market Distribution Map",
+            "Price Drop Alerts",
+            "Neighborhood Comparative Analytics",
+            "Photo/Asset Archiving"
+        ],
+        "stages": [
+            "Scraping Engine Development (Playwright)",
+            "Data Normalization & PostGIS Setup",
+            "Historical Tracking Logic",
+            "Web UI Dashboard",
+            "Automated Reporting System"
+        ],
+        "advantages": [
+            "Data-driven investment decisions",
+            "Identification of undervalued areas",
+            "Tracking of actual market velocity",
+            "Automated discovery of motivated sellers"
+        ],
+        "pitfalls": [
+            "Anti-scraping measures on major portals",
+            "Data quality/normalization challenges",
+            "High storage requirements for photos",
+            "Legal/Terms of Service compliance"
+        ],
+        "timestamp": "2026-05-01",
+        "images": ["assets/propinsight_mockup.png"]
+    }
+]
