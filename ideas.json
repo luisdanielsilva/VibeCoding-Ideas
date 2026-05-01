@@ -174,5 +174,35 @@
         ],
         "timestamp": "2026-05-01",
         "images": ["assets/propinsight_mockup.png"]
+    },
+    {
+        "id": "VC-006",
+        "title": "Daily Vibe",
+        "status": "Concept",
+        "excerpt": "A minimalist mood and productivity tracker for developers.",
+        "full_description": "Daily Vibe is a lightweight tool designed to help developers track their daily mood and productivity levels. It focuses on simplicity, allowing for quick check-ins and providing weekly trends to identify peak performance periods.",
+        "features": [
+            "One-click Mood Logging",
+            "Productivity Score Tracking",
+            "Weekly Vibe Reports",
+            "Minimalist Dashboard"
+        ],
+        "stages": [
+            "UI Design & Interaction Model",
+            "Local Storage Implementation",
+            "Trend Analysis Engine",
+            "Mobile-first Web View"
+        ],
+        "advantages": [
+            "Extremely low friction",
+            "Helps identify burnout early",
+            "Private and local-first"
+        ],
+        "pitfalls": [
+            "Requires user consistency",
+            "Market is crowded with habit trackers"
+        ],
+        "timestamp": "2026-05-01",
+        "images": []
     }
 ]
