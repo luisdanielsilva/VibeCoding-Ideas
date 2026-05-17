@@ -1,4 +1,4 @@
-name: 🚀 Deploy VibeCoding Ideas
+name: Deploy Website to VPS
 
 on:
   push:
@@ -6,22 +6,28 @@ on:
       - main
 
 jobs:
-  web-deploy:
-    name: 🎉 Deploy
+  deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: 🚚 Get latest code
-      uses: actions/checkout@v4
-    
-    - name: 📂 Sync files to FTP
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-      with:
-        server: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        server-dir: htdocs/ideas/
-        exclude: |
-          **/.git*
-          **/.git*/**
-          README.md
-          deploy_ftp.py
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install sshpass
+        run: sudo apt-get install -y sshpass
+
+      - name: Add VPS to known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ secrets.VPS_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Prepare Directory
+        run: |
+          sshpass -p "${{ secrets.VPS_PASSWORD }}" ssh -o StrictHostKeyChecking=no deploy@${{ secrets.VPS_HOST }} 'echo "${{ secrets.VPS_PASSWORD }}" | sudo -S mkdir -p /var/www/singleuseapps-portal/vibecoding/ && echo "${{ secrets.VPS_PASSWORD }}" | sudo -S chown -R deploy:www-data /var/www/singleuseapps-portal/vibecoding/'
+
+      - name: Deploy via Rsync
+        run: |
+          sshpass -p "${{ secrets.VPS_PASSWORD }}" rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no" --exclude '.git' --exclude '.github' ./ deploy@${{ secrets.VPS_HOST }}:/var/www/singleuseapps-portal/vibecoding/
+
+      - name: Restart Nginx
+        run: |
+          sshpass -p "${{ secrets.VPS_PASSWORD }}" ssh -o StrictHostKeyChecking=no deploy@${{ secrets.VPS_HOST }} 'echo "${{ secrets.VPS_PASSWORD }}" | sudo -S systemctl restart nginx'
