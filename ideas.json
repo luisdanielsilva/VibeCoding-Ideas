@@ -174,6 +174,60 @@
         "images": ["assets/agenda_mockup.png"]
     },
     {
+        "id": "VC-006",
+        "title": "VisualExif",
+        "status": "In Progress",
+        "excerpt": "Native macOS app for surgical metadata inspection and removal. Protect your privacy before sharing photos.",
+        "full_description": "In an era where every photo carries hidden data — GPS coordinates, device fingerprints, personal timestamps — VisualExif gives you surgical control over what you share. Drag a file, inspect its secrets, and neutralize exactly what you don't want. Built as a native macOS app with a bundled ExifTool engine, it requires zero external dependencies and processes everything locally. Part of the Single Use Apps collection, with a free tier and a one-time €9.99 PRO license.",
+        "features": [
+            "Real-time Metadata Inspector",
+            "Selective Tag Removal (GPS, EXIF, IPTC, XMP, MakerNotes)",
+            "Folder-level Batch Processing",
+            "Bundled ExifTool v13.57 Engine",
+            "Real-time Progress Tracking",
+            "Free + PRO Tier Licensing"
+        ],
+        "stages": [
+            "Core drag & drop UI + metadata inspector",
+            "Selective tag removal engine (PRO)",
+            "Folder batch processing & progress tracking",
+            "ExifTool bundling, signing & notarization",
+            "Free/PRO tier split + license verification system"
+        ],
+        "advantages": [
+            "Zero external dependencies — fully self-contained",
+            "100% local processing — privacy-first by design",
+            "Surgical per-category metadata control",
+            "One-time payment, lifetime license, no subscription"
+        ],
+        "pitfalls": [
+            "macOS only — no Windows or Linux support",
+            "ExifTool must be updated as new formats emerge",
+            "RAW format support varies by camera vendor",
+            "PRO feature gating may slow free-tier adoption"
+        ],
+        "roadmap": [
+            { "task": "Drag & drop interface", "done": true },
+            { "task": "Real-time metadata inspector panel", "done": true },
+            { "task": "Selective tag removal — GPS, EXIF, IPTC, XMP, MakerNotes (PRO)", "done": true },
+            { "task": "Folder batch processing + progress bar", "done": true },
+            { "task": "Bundled ExifTool v13.57 + notarization", "done": true },
+            { "task": "Remove All Metadata — one-click (Free)", "done": false },
+            { "task": "Remove GPS Only (Free)", "done": false },
+            { "task": "Core format support: JPG, PNG, HEIC, TIFF, MOV, MP4 (Free)", "done": false },
+            { "task": "Metadata export — CSV / JSON before cleaning (PRO)", "done": false },
+            { "task": "Before / after metadata comparison view (PRO)", "done": false },
+            { "task": "Preset profiles — Social Media Safe, Press Release, etc. (PRO)", "done": false },
+            { "task": "Rename by metadata fields — date, camera, GPS region (PRO)", "done": false },
+            { "task": "Watch folder — auto-clean new files on arrival (PRO)", "done": false },
+            { "task": "RAW format support — CR2, CR3, ARW, NEF, ORF, DNG (PRO)", "done": false },
+            { "task": "Date Fixer — sync filesystem dates with capture timestamp (PRO)", "done": false },
+            { "task": "Operation history & undo with backed-up originals (PRO)", "done": false }
+        ],
+        "timestamp": "2026-05-18",
+        "images": []
+    },
+    {
         "id": "VC-005",
         "title": "PropInsight",
         "status": "Canceled",
