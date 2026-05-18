@@ -96,6 +96,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
 
+            ${idea.roadmap && idea.roadmap.length > 0 ? `
+            <div class="modal-section">
+                <h3>Roadmap</h3>
+                <div class="roadmap-container">
+                    ${idea.roadmap.map(item => `
+                        <div class="roadmap-item ${item.done ? 'roadmap-done' : ''}">
+                            <span class="roadmap-check">${item.done ? '✓' : '○'}</span>
+                            <span class="roadmap-task">${item.task}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+            ` : ''}
+
             ${idea.links ? `
                 <div class="modal-section">
                     <h3>Resources</h3>

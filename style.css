@@ -317,6 +317,44 @@ h1 {
     cursor: pointer;
 }
 
+/* Roadmap */
+.roadmap-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.roadmap-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--card-border);
+    font-size: 0.9rem;
+}
+
+.roadmap-check {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    min-width: 18px;
+    color: var(--text-secondary);
+}
+
+.roadmap-task {
+    color: var(--text-secondary);
+}
+
+.roadmap-done .roadmap-check {
+    color: #34c759;
+}
+
+.roadmap-done .roadmap-task {
+    color: #555;
+    text-decoration: line-through;
+}
+
 footer {
     margin-top: 80px;
     text-align: center;

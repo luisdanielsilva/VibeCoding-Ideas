@@ -31,6 +31,16 @@
             "OS-specific trash handling complexities",
             "Cloud-only file (on-demand) access issues"
         ],
+        "roadmap": [
+            { "task": "Native macOS Swift/SwiftUI implementation", "done": true },
+            { "task": "SHA-256 cryptographic duplicate detection", "done": true },
+            { "task": "Cryptographic license system (v1.2.0)", "done": true },
+            { "task": "Microsoft Entra App Registration for Graph API", "done": false },
+            { "task": "OAuth 2.0 / Device Code flow for OneDrive auth", "done": false },
+            { "task": "Graph API file crawler (names, hashes, sizes, paths)", "done": false },
+            { "task": "Unified local + cloud duplicate report", "done": false },
+            { "task": "Edge case fixes for SHA-256 detection", "done": false }
+        ],
         "timestamp": "2026-04-10",
         "images": ["assets/filelister_mockup.png"]
     },
@@ -65,6 +75,14 @@
             "Requires manual data entry for new ideas",
             "Potential for 'idea bloat' without execution",
             "Static nature limits complex interactions"
+        ],
+        "roadmap": [
+            { "task": "Portal architecture, design tokens & glassmorphism UI", "done": true },
+            { "task": "Dynamic JSON-based card rendering", "done": true },
+            { "task": "Modal interaction with full idea detail", "done": true },
+            { "task": "Roadmap section per idea in modal", "done": true },
+            { "task": "Client-side search & category tag filters", "done": false },
+            { "task": "Offline admin screen to draft new ideas as JSON", "done": false }
         ],
         "timestamp": "2026-05-01",
         "images": ["assets/vibecoding_mockup.png"]
@@ -101,6 +119,12 @@
             "Styling/Colors might be lost in translation",
             "DrawIO's nested group structures are complex"
         ],
+        "roadmap": [
+            { "task": "XML parser: unpack mxGraphModel compressed format", "done": false },
+            { "task": "Shape & connection mapping rules → Mermaid syntax", "done": false },
+            { "task": "Split-screen UI (paste XML left, live Mermaid right)", "done": false },
+            { "task": "CLI wrapper (Node/Python) for Git hooks & CI pipelines", "done": false }
+        ],
         "timestamp": "2026-05-01",
         "images": ["assets/drawio_mockup.png"]
     },
@@ -135,6 +159,16 @@
             "Complexity of multi-timezone scheduling",
             "Varying calendar API permissions",
             "Participant delay in providing topics"
+        ],
+        "roadmap": [
+            { "task": "Project scaffold (Next.js 15 + TypeScript + Tailwind + shadcn/ui)", "done": false },
+            { "task": "Organizer form: create workshop + optional Excel upload", "done": false },
+            { "task": "Participant portal with one-click link & availability input", "done": false },
+            { "task": "Smart scheduling constraint solver engine", "done": false },
+            { "task": "Auto-send final agenda + ICS calendar invites via email", "done": false },
+            { "task": "Organizer dashboard", "done": false },
+            { "task": "Google Workspace & Microsoft 365 calendar integration", "done": false },
+            { "task": "AI-assisted topic clustering & agenda building", "done": false }
         ],
         "timestamp": "2026-05-01",
         "images": ["assets/agenda_mockup.png"]
@@ -171,6 +205,13 @@
             "Data quality/normalization challenges",
             "High storage requirements for photos",
             "Legal/Terms of Service compliance"
+        ],
+        "roadmap": [
+            { "task": "Headless scraper (Playwright) for property listings", "done": false },
+            { "task": "PostGIS spatial DB setup for neighborhood grouping", "done": false },
+            { "task": "Price-drop tracking engine + push notifications", "done": false },
+            { "task": "Web UI dashboard for market analysis", "done": false },
+            { "task": "Automated reporting system", "done": false }
         ],
         "timestamp": "2026-05-01",
         "images": ["assets/propinsight_mockup.png"]
