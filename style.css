@@ -114,6 +114,11 @@ h1 {
     color: #34c759;
 }
 
+.idea-status.canceled {
+    background: rgba(255, 59, 48, 0.1);
+    color: #ff3b30;
+}
+
 .idea-excerpt {
     color: var(--text-secondary);
     font-size: 0.95rem;

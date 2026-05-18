@@ -176,7 +176,7 @@
     {
         "id": "VC-005",
         "title": "PropInsight",
-        "status": "Concept",
+        "status": "Canceled",
         "excerpt": "Automated real-estate market analyzer and historical price tracker.",
         "full_description": "PropInsight is an intelligent real-estate data aggregator designed to provide a comprehensive overview of local property markets. By autonomously scanning major real-estate portals, it captures and cross-references critical data points including historical pricing, geographic distribution, and visual assets.",
         "features": [
