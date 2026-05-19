@@ -228,6 +228,54 @@
         "images": []
     },
     {
+        "id": "VC-007",
+        "title": "MetaStrip",
+        "status": "In Progress",
+        "excerpt": "Cross-platform image metadata cleaner. Inspect hidden data and strip it — desktop app or self-hosted web server.",
+        "full_description": "Every photo carries hidden data: GPS coordinates, device fingerprints, author names, and timestamps embedded invisibly in the file. MetaStrip surfaces all of it and lets you remove exactly what you choose. Upload JPEG, PNG, or TIFF images, inspect metadata by category, pick a preset (Privacy Mode, Full Clean, or Custom), and download stripped images — individually or as a ZIP. Runs as a native Electron desktop app on macOS, Windows, and Linux, or as a self-hosted Express web server for teams.",
+        "features": [
+            "Drag & Drop Batch Upload (up to 100 files / 100 MB each)",
+            "Full Metadata Inspector (GPS, Timestamps, Author, Camera & Lens)",
+            "Presets: Privacy Mode, Full Clean, Custom Selection",
+            "ZIP Download for Batch Results",
+            "Electron Desktop App (macOS, Windows, Linux)",
+            "Self-Hosted Web Server Mode (Express + React)"
+        ],
+        "stages": [
+            "Core API: metadata read & strip engine (sharp + exifr)",
+            "React Frontend with drag-and-drop and metadata inspector",
+            "Preset system and custom per-category toggles",
+            "Electron shell for native desktop packaging",
+            "Signed & notarized distributables (.dmg, .exe, .AppImage)"
+        ],
+        "advantages": [
+            "Works as both a desktop app and a web server — one codebase",
+            "Per-category surgical control, not just all-or-nothing",
+            "ICC color profiles and orientation always preserved",
+            "Cross-platform: macOS, Windows, Linux"
+        ],
+        "pitfalls": [
+            "Server mode sends images over the network — not suitable for sensitive files without HTTPS",
+            "TIFF support is limited by sharp library constraints",
+            "No support for RAW formats (CR2, ARW, NEF) in v1"
+        ],
+        "roadmap": [
+            { "task": "Express API: POST /api/read (metadata inspection)", "done": true },
+            { "task": "Express API: POST /api/strip (selective metadata removal)", "done": true },
+            { "task": "React UI: DropZone, MetadataViewer, CriteriaPanel, ResultsPanel", "done": true },
+            { "task": "Preset system: Privacy Mode, Full Clean, Custom", "done": true },
+            { "task": "ZIP batch download via JSZip", "done": true },
+            { "task": "Electron shell: desktop app packaging", "done": true },
+            { "task": "macOS .dmg, Windows .exe, Linux .AppImage distributables", "done": false },
+            { "task": "Code signing & notarization (macOS)", "done": false },
+            { "task": "RAW format support (CR2, ARW, NEF, DNG)", "done": false },
+            { "task": "Before / after metadata diff view", "done": false },
+            { "task": "Metadata export to CSV / JSON before stripping", "done": false }
+        ],
+        "timestamp": "2026-05-19",
+        "images": ["assets/metastrip_mockup.png"]
+    },
+    {
         "id": "VC-005",
         "title": "PropInsight",
         "status": "Canceled",
