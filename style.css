@@ -360,6 +360,54 @@ h1 {
     text-decoration: line-through;
 }
 
+/* AI Features Table */
+.ai-features-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+}
+
+.ai-features-table thead tr {
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+.ai-features-table th {
+    text-align: left;
+    padding: 8px 12px;
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.ai-features-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: var(--text-secondary);
+    vertical-align: top;
+}
+
+.ai-features-table td:first-child {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    width: 32px;
+}
+
+.ai-features-table td:nth-child(2) {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+.ai-features-table tbody tr:hover {
+    background: rgba(255,255,255,0.02);
+}
+
+.complexity-low    { color: #34c759; }
+.complexity-medium { color: #ff9f0a; }
+.complexity-high   { color: #ff453a; }
+
 footer {
     margin-top: 80px;
     text-align: center;

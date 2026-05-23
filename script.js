@@ -110,6 +110,32 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
             ` : ''}
 
+            ${idea.ai_features && idea.ai_features.length > 0 ? `
+            <div class="modal-section">
+                <h3>AI Proposed Features</h3>
+                <table class="ai-features-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Feature</th>
+                            <th>Monetization</th>
+                            <th>Complexity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${idea.ai_features.map((f, i) => `
+                            <tr>
+                                <td>${i + 1}</td>
+                                <td>${f.name}</td>
+                                <td>${f.monetization}</td>
+                                <td class="complexity-${f.complexity.toLowerCase()}">${f.complexity}</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            </div>
+            ` : ''}
+
             ${idea.links ? `
                 <div class="modal-section">
                     <h3>Resources</h3>
