@@ -90,6 +90,7 @@ Named presets: "Social Media Safe" (strip GPS + author), "Press Release" (strip 
 2. Add a preset picker (menu or segmented control) above `TagSelectorView`
 3. On selection, update `selectedCategories` to the preset's category set
 4. Gate preset picker behind PRO license; free users see only "Custom"
+5. Persist custom presets via `ProfileManager` to `~/Library/Application Support/VisualExif/profiles.json` — more robust than `UserDefaults` for user-defined collections
 
 #### 2d. Watch Folder — Auto-clean New Files (PRO)
 Monitor a folder with `DispatchSource.makeFileSystemObjectSource` and auto-process new files on arrival.
@@ -99,6 +100,7 @@ Monitor a folder with `DispatchSource.makeFileSystemObjectSource` and auto-proce
 2. Use `FSEventStreamCreate` or `DispatchSource` to monitor the selected directory
 3. On new file detection, append to `filesToProcess` and trigger `startCleaning()` silently
 4. Show a notification via `UNUserNotificationCenter` when files are cleaned
+5. Add a `MenuBarExtra` in `VisualExifApp.swift` with Start / Stop / Show Status actions — lets the watcher run in the background without the main window open
 
 #### 2e. RAW Format Support (PRO)
 CR2, CR3, ARW, NEF, ORF, DNG — ExifTool supports these natively.
@@ -113,17 +115,29 @@ CR2, CR3, ARW, NEF, ORF, DNG — ExifTool supports these natively.
 Sync filesystem modification date with `DateTimeOriginal` EXIF tag.
 
 **Steps:**
-1. After cleaning, read `DateTimeOriginal` from the processed file via ExifTool
-2. Call `FileManager.setAttributes([.modificationDate: captureDate], ofItemAtPath:)` on the output file
-3. Surface as an optional toggle in the UI: "Fix file dates after cleaning"
+1. After cleaning, run `exiftool -FileModifyDate<DateTimeOriginal <file>` — syncs the filesystem modification date to the capture date directly in ExifTool (more accurate than `FileManager.setAttributes`, which only changes the OS date without touching the EXIF tag)
+2. Surface as an optional toggle in the UI: "Fix file dates after cleaning"
 
 #### 2g. Operation History & Undo (PRO)
 Keep backed-up originals and allow reverting a cleaning operation.
 
 **Steps:**
-1. Before any clean operation, copy original to `~/.VisualExif/Backups/<timestamp>/<filename>`
-2. Maintain a `[CleanOperation]` log in UserDefaults or a local SQLite db
+1. Before any clean operation, copy original to `~/Library/Application Support/VisualExif/Backups/<timestamp>/<filename>`
+2. Maintain a `[CleanOperation]` log in SQLite at `~/Library/Application Support/VisualExif/history.db` — an immutable audit log that survives app reinstalls and is inappropriate for `UserDefaults`
 3. Add a History panel listing past operations with "Restore Original" per file
+
+---
+
+### Phase 3 — Batch Keyword Tagging (PRO)
+Write IPTC Keywords / XMP Subject tags to multiple files at once — essential for photographers organizing large shoots.
+
+**Steps:**
+1. Create `KeywordTaggerView.swift`: a sheet with a tag input field (comma-separated or tag chips), a mode toggle (Append `+=` vs Replace `=`), and a file list preview showing which files will be affected
+2. On confirm, run `exiftool -Keywords+=<tag1> -Keywords+=<tag2> ... <files>` (append mode) or `exiftool -Keywords=<tag1> -Keywords=<tag2> ... <files>` (replace mode) via `ExifToolWrapper.swift`
+3. Wire a "Tag Files" button into the `ContentView.swift` toolbar (PRO gated)
+4. After tagging, re-run `inspectFile()` on the selected file to refresh the inspector panel
+
+**Acceptance:** Select 10 JPEGs → open Tag sheet → enter "travel, porto" → Append → confirm → re-inspect any file → IPTC Keywords field shows the new tags alongside any pre-existing ones.
 
 ---
 
@@ -143,7 +157,7 @@ Features ordered by monetization potential. All are PRO-tier unless marked as Fr
 |---|---------|-------------------|-------------------|------------|
 | 1 | **GPS Map View** | Show a pin on an embedded map for any geotagged photo — visualize exactly what location data is exposed before removing it | High-impact PRO demo: seeing your home address on a map before sharing is viscerally convincing | Medium |
 | 2 | **Metadata Editor** (write EXIF) | Edit any metadata field in-place — change author, copyright, caption, correct timestamps | Transforms app from cleaner → full metadata manager; opens journalism/photographer market | High |
-| 3 | **Privacy Risk Scanner** | AI-powered scan of a folder that flags photos with high-risk metadata (GPS, device serial, face recognition tags) and assigns a risk score | "Audit" use case — organizations, lawyers, journalists; premium positioning | Medium |
+| 3 | **Privacy Audit Dashboard** | Scan a folder and produce both a per-file risk score (GPS=+3, device serial=+2, author=+2, face region tags=+3, software=+1) and a folder-level compliance summary (total files, % with GPS, % missing copyright, % with device identifiers) | "Audit" use case — organizations, lawyers, journalists; exportable compliance report; premium positioning | Medium |
 | 4 | **Quick Share with Auto-Strip** | macOS Share Sheet integration — share a photo directly from VisualExif after automatically stripping selected categories | Frictionless daily driver for privacy-conscious users; embedded in macOS workflow | Medium |
 | 5 | **Metadata Search & Filter** | Search across a folder: "show all photos taken with iPhone 14", "all files with GPS data", "photos taken in 2019" | Power-user PRO feature; unique in the metadata tool market | Medium |
 | 6 | **Duplicate Photo Detection** (perceptual hash) | Find visually similar photos in a folder using dHash — same photo saved multiple times at different resolutions | Complements the cleaner workflow; natural PRO bundle with FileLister | High |
@@ -169,16 +183,21 @@ ExifTool supports writing arbitrary EXIF tags (not just removing them):
 4. Validate inputs (date format, GPS coordinate range) before writing
 5. Gate full edit mode behind PRO; allow editing of one field per session in trial
 
-#### F3 — Privacy Risk Scanner
-1. Define a risk scoring system:
+#### F3 — Privacy Audit Dashboard
+Merges per-file risk scoring with a folder-level compliance overview into a single `AuditReportView.swift`:
+
+1. Create `AuditEngine.swift`: runs `exiftool -json -r <folder>` across all files, then scores each file:
    - GPS present → +3 points
    - Device serial number (MakerNote tags) → +2 points
    - Author/creator name → +2 points
    - Face region metadata (XMP `mwg-rs:RegionList`) → +3 points
    - Software version (identifies device OS) → +1 point
-2. Run via ExifTool with `-json` output across an entire folder
-3. Display results as a sorted list: High Risk / Medium Risk / Low Risk / Clean
-4. "Fix All High Risk" one-click button: strip GPS + device identifiers from all flagged files
+2. Create `AuditReportView.swift` with two sections:
+   - **Compliance summary panel** (top): total files scanned, files with GPS (count + %), files missing copyright (count + %), files with MakerNote device identifiers (count + %), files fully clean (count + %)
+   - **Per-file risk list** (bottom): sorted High / Medium / Low / Clean, filterable by risk level, shows which specific tags contributed to the score
+3. "Fix All High Risk" button: strips GPS + device identifiers from all files scoring ≥ 5 points
+4. "Export Report" button: serializes the audit results to CSV or JSON via `NSSavePanel`
+5. Gate behind PRO license
 
 #### F4 — Quick Share with Auto-Strip
 1. Implement `NSSharingServicePicker` triggered from a toolbar "Share" button
@@ -233,3 +252,41 @@ ExifTool supports writing arbitrary EXIF tags (not just removing them):
    - Options: position (corner), opacity, font size, text vs image watermark
    - Process in a temp buffer; save as a new file alongside the original
 4. Combine with watch folder feature: auto-strip + auto-stamp incoming files
+
+---
+
+## GDPR Compliance Framework
+
+VisualExif's core operations map directly to GDPR obligations, making it a compliance tool — not just a privacy utility. This section documents the legal grounding for each feature to support enterprise positioning and marketing.
+
+| GDPR Article | Obligation | VisualExif Feature |
+|---|---|---|
+| Art. 5(1)(b) — Purpose Limitation | Personal data (GPS, author) must not be repurposed beyond the original collection context | Strip GPS / Strip Author before sharing images externally |
+| Art. 5(1)(c) — Data Minimisation | Only collect data adequate and necessary for the purpose | "Remove All" and preset profiles enforce minimisation before publication |
+| Art. 5(2) — Accountability | Controller must demonstrate compliance | Privacy Audit Dashboard (F3) exports a CSV/JSON report of what was removed and when |
+| Art. 9 — Special Category Data | Location data combined with biometrics (face tags) qualifies as sensitive data | Privacy Audit flags `mwg-rs:RegionList` face region tags as high-risk |
+| Art. 17 — Right to Erasure | Data subjects can request removal of their personal data from images | Batch Keyword Tagging allows removal of author/creator attribution across entire folders |
+| Art. 25 — Data Protection by Design | Systems must embed privacy from the start | Watch Folder + auto-strip pipeline enforces privacy at ingestion, before images enter any workflow |
+| Art. 46 — Transfers to Third Countries | Photos shared internationally must not carry personal data without adequate safeguards | "Quick Share with Auto-Strip" (F4) enforces stripping before any share action |
+
+**Use cases for enterprise sales:**
+- Law firms sharing evidentiary photos must strip GPS and author before disclosure
+- Newsrooms publishing crowd photos must remove face region tags and device serials
+- HR departments circulating headshots must remove creation timestamps and location data
+- Marketing agencies delivering client assets must strip all metadata before handoff
+
+---
+
+## Release Milestones
+
+Structured as incremental releases aligned to the phase plan above.
+
+| Version | Scope | Key Deliverables |
+|---|---|---|
+| v1.2 | Phase 1 complete | Remove All (1a), Remove GPS (1b), format validation (1c) |
+| v1.3 | PRO core | Metadata Export CSV/JSON (2a), Before/After Comparison (2b) |
+| v1.4 | PRO presets + audit | Preset Profiles with ProfileManager (2c), Privacy Audit Dashboard (F3) |
+| v1.5 | PRO automation | Watch Folder + MenuBarExtra (2d), Batch Keyword Tagging (Phase 3) |
+| v2.0 | PRO power features | GPS Map View (F1), Metadata Editor (F2), RAW Format Support (2e) |
+| v2.1 | PRO history + naming | Operation History in SQLite (2g), Date Fixer (2f), Bulk Rename (F7) |
+| v2.2 | PRO integrations | iCloud Photos Integration (F8), Quick Share (F4), Metadata Search (F5) |
