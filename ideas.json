@@ -1,369 +1,730 @@
 [
-    {
-        "id": "VC-001",
-        "title": "FileLister",
-        "status": "Completed",
-        "excerpt": "A powerful duplicate file management tool for macOS and cross-platform use.",
-        "full_description": "FileLister is a specialized utility designed to regain storage space by identifying and managing duplicate files. It uses deep cryptographic hashing (SHA-256) to ensure 100% accuracy, moving beyond simple name or size comparisons. It supports local drives, external storage, and cloud-synced folders like OneDrive or Google Drive.",
-        "features": [
-            "SHA-256 Deep Scanning",
-            "Multi-threaded Performance",
-            "Safety Lock Protection",
-            "Media & Hidden File Filtering",
-            "Auto-Selection Rules",
-            "Action Logging"
-        ],
-        "stages": [
-            "Native macOS (Swift/SwiftUI) Implementation",
-            "Cross-Platform Python/PySide6 Port",
-            "Advanced Filtering & Rule System",
-            "Performance Optimization for Large Volumes",
-            "Deployment & Notarization Workflow"
-        ],
-        "advantages": [
-            "Zero false positives with hash verification",
-            "Extremely fast multi-threaded engine",
-            "Prevents accidental data loss",
-            "Clean, premium user interface"
-        ],
-        "pitfalls": [
-            "High RAM usage on multi-million file scans",
-            "OS-specific trash handling complexities",
-            "Cloud-only file (on-demand) access issues"
-        ],
-        "roadmap": [
-            { "task": "Native macOS Swift/SwiftUI implementation", "done": true },
-            { "task": "SHA-256 cryptographic duplicate detection", "done": true },
-            { "task": "Cryptographic license system (v1.2.0)", "done": true },
-            { "task": "Microsoft Entra App Registration for Graph API", "done": false },
-            { "task": "OAuth 2.0 / Device Code flow for OneDrive auth", "done": false },
-            { "task": "Graph API file crawler (names, hashes, sizes, paths)", "done": false },
-            { "task": "Unified local + cloud duplicate report", "done": false },
-            { "task": "Edge case fixes for SHA-256 detection", "done": false }
-        ],
-        "timestamp": "2026-04-10",
-        "images": ["assets/filelister_mockup.png"],
-        "ai_features": [
-            { "name": "Similar Image Detection (perceptual hash)", "monetization": "Core PRO upsell — photographers pay for near-duplicate detection", "complexity": "High" },
-            { "name": "Storage Analytics Dashboard", "monetization": "Standalone PRO value — disk breakdown, largest & oldest files", "complexity": "Medium" },
-            { "name": "Google Drive Integration", "monetization": "PRO add-on — expands to Google Workspace users", "complexity": "High" },
-            { "name": "Scheduled Auto-Scans + Notifications", "monetization": "Subscription 'Always-on' tier — weekly duplicate watch", "complexity": "Medium" },
-            { "name": "Scan Report Export (PDF / CSV)", "monetization": "B2B / team license — IT admins need audit trails", "complexity": "Low" },
-            { "name": "Finder Extension (Quick Action)", "monetization": "Lowers friction, drives word-of-mouth and conversions", "complexity": "Medium" },
-            { "name": "iCloud Drive Integration", "monetization": "Differentiating PRO feature for macOS/iPhone users", "complexity": "High" },
-            { "name": "Dropbox Integration", "monetization": "PRO add-on — completes the cloud trifecta", "complexity": "High" },
-            { "name": "Duplicate Music / Audio Fingerprinting", "monetization": "Premium niche — music collectors justify higher price point", "complexity": "High" },
-            { "name": "Smart Exclusion Rules & Presets", "monetization": "Power-user PRO — reduces accidental deletion support tickets", "complexity": "Low" }
-        ]
-    },
-    {
-        "id": "VC-002",
-        "title": "VibeCoding Ideas",
-        "status": "In Progress",
-        "excerpt": "A public documentation portal for app concepts and implementation roadmaps.",
-        "full_description": "VibeCoding Ideas is a minimal, content-focused portal designed to publicly document app concepts. It serves as a bridge between rough ideas and full development, providing a space for AI-assisted expansion of descriptions and technical implementation plans.",
-        "features": [
-            "Minimal Glassmorphism Design",
-            "Dynamic JSON-based Content",
-            "AI-Assisted Concept Expansion",
-            "Detailed Implementation Roadmaps",
-            "Automated FTP Deployment",
-            "Responsive Modal Interaction"
-        ],
-        "stages": [
-            "Portal Architecture & Design Tokens",
-            "JSON Data Schema Definition",
-            "Dynamic Rendering Logic (JS)",
-            "AI Forge Integration for Content",
-            "Deployment Automation Scripting"
-        ],
-        "advantages": [
-            "Public accountability for projects",
-            "Easy documentation of initial sparks",
-            "Ready-to-use implementation plans",
-            "Lightweight and extremely fast"
-        ],
-        "pitfalls": [
-            "Requires manual data entry for new ideas",
-            "Potential for 'idea bloat' without execution",
-            "Static nature limits complex interactions"
-        ],
-        "roadmap": [
-            { "task": "Portal architecture, design tokens & glassmorphism UI", "done": true },
-            { "task": "Dynamic JSON-based card rendering", "done": true },
-            { "task": "Modal interaction with full idea detail", "done": true },
-            { "task": "Roadmap section per idea in modal", "done": true },
-            { "task": "Client-side search & category tag filters", "done": false },
-            { "task": "Offline admin screen to draft new ideas as JSON", "done": false }
-        ],
-        "timestamp": "2026-05-01",
-        "images": ["assets/vibecoding_mockup.png"]
-    },
-    {
-        "id": "VC-003",
-        "title": "DrawIO to Mermaid Converter",
-        "status": "Concept",
-        "excerpt": "A tool to convert visual DrawIO diagrams into maintainable Mermaid.js code.",
-        "full_description": "This tool aims to bridge the gap between visual diagramming and 'Diagrams as Code'. By converting XML-based DrawIO files into Mermaid.js syntax, it allows developers to store diagrams directly in their Git repositories in a readable, diff-able text format.",
-        "features": [
-            "XML/Compressed DrawIO Parsing",
-            "Mermaid.js Syntax Generation",
-            "Live Preview Side-by-Side",
-            "Support for Flowcharts & Sequences",
-            "Batch Conversion Utility",
-            "Git-Friendly Export"
-        ],
-        "stages": [
-            "DrawIO XML Schema Research",
-            "Translation Logic Development",
-            "Web-based Conversion Interface",
-            "Mermaid.js Preview Integration",
-            "CLI tool for CI/CD pipelines"
-        ],
-        "advantages": [
-            "Makes diagrams searchable and diff-able",
-            "Eliminates binary/image file bloat in Git",
-            "Fast iteration through text editing",
-            "Platform independent (Mermaid is universal)"
-        ],
-        "pitfalls": [
-            "Complex DrawIO shapes may not map 1:1",
-            "Styling/Colors might be lost in translation",
-            "DrawIO's nested group structures are complex"
-        ],
-        "roadmap": [
-            { "task": "XML parser: unpack mxGraphModel compressed format", "done": false },
-            { "task": "Shape & connection mapping rules → Mermaid syntax", "done": false },
-            { "task": "Split-screen UI (paste XML left, live Mermaid right)", "done": false },
-            { "task": "CLI wrapper (Node/Python) for Git hooks & CI pipelines", "done": false }
-        ],
-        "timestamp": "2026-05-01",
-        "images": ["assets/drawio_mockup.png"],
-        "ai_features": [
-            { "name": "Batch File Conversion", "monetization": "Primary PRO unlock — power users hit the single-file limit fast", "complexity": "Medium" },
-            { "name": "Multi-format Export (PlantUML, D2, GraphViz DOT)", "monetization": "PRO add-on — widens appeal beyond Mermaid-only teams", "complexity": "Medium" },
-            { "name": "Additional Diagram Types (Class, ER, State, Gantt)", "monetization": "Enterprise use cases — unlocks engineering & architecture teams", "complexity": "High" },
-            { "name": "REST API with API Key", "monetization": "SaaS subscription by volume — developer audience pays reliably", "complexity": "Medium" },
-            { "name": "GitHub / GitLab Integration", "monetization": "Team plan — 'diagrams as code' migration for engineering orgs", "complexity": "High" },
-            { "name": "VS Code Extension", "monetization": "Free distribution channel — drives web tool and PRO sign-ups", "complexity": "Medium" },
-            { "name": "Mermaid → DrawIO Reverse Conversion", "monetization": "Doubles addressable use case — the other direction of the workflow", "complexity": "High" },
-            { "name": "Conversion History & Cloud Sync", "monetization": "Subscription retention feature — users keep coming back", "complexity": "Medium" },
-            { "name": "Shareable Diagram Links", "monetization": "Viral growth loop — premium for permanent links", "complexity": "Medium" },
-            { "name": "Confluence / Notion Export", "monetization": "Enterprise documentation teams — the biggest DrawIO user segment", "complexity": "High" }
-        ]
-    },
-    {
-        "id": "VC-004",
-        "title": "Agenda Creator",
-        "status": "Concept",
-        "excerpt": "Smart workshop and meeting organizer that optimizes for participant availability.",
-        "full_description": "Agenda Creator automates the coordination of complex workshops and meetings. It collects topics from participants, analyzes their availability, and intelligently finds the best time slot. It then organizes the full workshop schedule and sends automated calendar invites and organized emails.",
-        "features": [
-            "Topic/Agenda Point Collection",
-            "Participant Availability Analysis",
-            "Optimal Slot Recommendation",
-            "Excel/CSV Input Support",
-            "Automated Email Distribution",
-            "Calendar Event Integration"
-        ],
-        "stages": [
-            "Availability Collection Logic",
-            "Agenda Optimization Algorithm",
-            "Email Template Engine",
-            "Calendar API Integrations",
-            "Workshop Management Dashboard"
-        ],
-        "advantages": [
-            "Drastically reduces coordination overhead",
-            "Optimizes time spent in the office",
-            "Ensures all high-priority topics are covered",
-            "Seamless calendar management"
-        ],
-        "pitfalls": [
-            "Complexity of multi-timezone scheduling",
-            "Varying calendar API permissions",
-            "Participant delay in providing topics"
-        ],
-        "roadmap": [
-            { "task": "Project scaffold (Next.js 15 + TypeScript + Tailwind + shadcn/ui)", "done": false },
-            { "task": "Organizer form: create workshop + optional Excel upload", "done": false },
-            { "task": "Participant portal with one-click link & availability input", "done": false },
-            { "task": "Smart scheduling constraint solver engine", "done": false },
-            { "task": "Auto-send final agenda + ICS calendar invites via email", "done": false },
-            { "task": "Organizer dashboard", "done": false },
-            { "task": "Google Workspace & Microsoft 365 calendar integration", "done": false },
-            { "task": "AI-assisted topic clustering & agenda building", "done": false }
-        ],
-        "timestamp": "2026-05-01",
-        "images": ["assets/agenda_mockup.png"]
-    },
-    {
-        "id": "VC-006",
-        "title": "VisualExif",
-        "status": "In Progress",
-        "excerpt": "Native macOS app for surgical metadata inspection and removal. Protect your privacy before sharing photos.",
-        "full_description": "In an era where every photo carries hidden data — GPS coordinates, device fingerprints, personal timestamps — VisualExif gives you surgical control over what you share. Drag a file, inspect its secrets, and neutralize exactly what you don't want. Built as a native macOS app with a bundled ExifTool engine, it requires zero external dependencies and processes everything locally. Part of the Single Use Apps collection, with a free tier and a one-time €9.99 PRO license.",
-        "features": [
-            "Real-time Metadata Inspector",
-            "Selective Tag Removal (GPS, EXIF, IPTC, XMP, MakerNotes)",
-            "Folder-level Batch Processing",
-            "Bundled ExifTool v13.57 Engine",
-            "Real-time Progress Tracking",
-            "Free + PRO Tier Licensing"
-        ],
-        "stages": [
-            "Core drag & drop UI + metadata inspector",
-            "Selective tag removal engine (PRO)",
-            "Folder batch processing & progress tracking",
-            "ExifTool bundling, signing & notarization",
-            "Free/PRO tier split + license verification system"
-        ],
-        "advantages": [
-            "Zero external dependencies — fully self-contained",
-            "100% local processing — privacy-first by design",
-            "Surgical per-category metadata control",
-            "One-time payment, lifetime license, no subscription"
-        ],
-        "pitfalls": [
-            "macOS only — no Windows or Linux support",
-            "ExifTool must be updated as new formats emerge",
-            "RAW format support varies by camera vendor",
-            "PRO feature gating may slow free-tier adoption"
-        ],
-        "roadmap": [
-            { "task": "Drag & drop interface", "done": true },
-            { "task": "Real-time metadata inspector panel", "done": true },
-            { "task": "Selective tag removal — GPS, EXIF, IPTC, XMP, MakerNotes (PRO)", "done": true },
-            { "task": "Folder batch processing + progress bar", "done": true },
-            { "task": "Bundled ExifTool v13.57 + notarization", "done": true },
-            { "task": "Remove All Metadata — one-click (Free)", "done": false },
-            { "task": "Remove GPS Only (Free)", "done": false },
-            { "task": "Core format support: JPG, PNG, HEIC, TIFF, MOV, MP4 (Free)", "done": false },
-            { "task": "Metadata export — CSV / JSON before cleaning (PRO)", "done": false },
-            { "task": "Before / after metadata comparison view (PRO)", "done": false },
-            { "task": "Preset profiles — Social Media Safe, Press Release, etc. (PRO)", "done": false },
-            { "task": "Rename by metadata fields — date, camera, GPS region (PRO)", "done": false },
-            { "task": "Watch folder — auto-clean new files on arrival (PRO)", "done": false },
-            { "task": "RAW format support — CR2, CR3, ARW, NEF, ORF, DNG (PRO)", "done": false },
-            { "task": "Date Fixer — sync filesystem dates with capture timestamp (PRO)", "done": false },
-            { "task": "Operation history & undo with backed-up originals (PRO)", "done": false }
-        ],
-        "timestamp": "2026-05-18",
-        "images": [],
-        "ai_features": [
-            { "name": "GPS Map View", "monetization": "High-impact PRO demo — seeing your home on a map drives instant conversion", "complexity": "Medium" },
-            { "name": "Metadata Editor (write EXIF)", "monetization": "Opens photographer & journalist market — cleaner becomes full manager", "complexity": "High" },
-            { "name": "Privacy Risk Scanner", "monetization": "Premium for orgs, lawyers, journalists — audit use case", "complexity": "Medium" },
-            { "name": "Quick Share with Auto-Strip", "monetization": "Daily driver — embedded in macOS Share Sheet, sticky retention", "complexity": "Medium" },
-            { "name": "Metadata Search & Filter across Folder", "monetization": "Power-user PRO — unique in the metadata tool market", "complexity": "Medium" },
-            { "name": "Duplicate Photo Detection (perceptual hash)", "monetization": "Natural PRO bundle with FileLister — same audience, higher ARPU", "complexity": "High" },
-            { "name": "Bulk Rename by Metadata Tokens", "monetization": "Widely requested in photo tool market — photographers will pay", "complexity": "Medium" },
-            { "name": "iCloud Photos Library Integration", "monetization": "Removes biggest friction for iPhone users — differentiating feature", "complexity": "High" },
-            { "name": "Metadata Comparison Across Files", "monetization": "Editorial & team use case — photo editors reviewing batches", "complexity": "Medium" },
-            { "name": "Copyright & Watermark Stamper", "monetization": "Strip competitor metadata, add your own — photographer community", "complexity": "Medium" }
-        ]
-    },
-    {
-        "id": "VC-007",
-        "title": "MetaStrip",
-        "status": "In Progress",
-        "excerpt": "Cross-platform image metadata cleaner. Inspect hidden data and strip it — desktop app or self-hosted web server.",
-        "full_description": "Every photo carries hidden data: GPS coordinates, device fingerprints, author names, and timestamps embedded invisibly in the file. MetaStrip surfaces all of it and lets you remove exactly what you choose. Upload JPEG, PNG, or TIFF images, inspect metadata by category, pick a preset (Privacy Mode, Full Clean, or Custom), and download stripped images — individually or as a ZIP. Runs as a native Electron desktop app on macOS, Windows, and Linux, or as a self-hosted Express web server for teams.",
-        "features": [
-            "Drag & Drop Batch Upload (up to 100 files / 100 MB each)",
-            "Full Metadata Inspector (GPS, Timestamps, Author, Camera & Lens)",
-            "Presets: Privacy Mode, Full Clean, Custom Selection",
-            "ZIP Download for Batch Results",
-            "Electron Desktop App (macOS, Windows, Linux)",
-            "Self-Hosted Web Server Mode (Express + React)"
-        ],
-        "stages": [
-            "Core API: metadata read & strip engine (sharp + exifr)",
-            "React Frontend with drag-and-drop and metadata inspector",
-            "Preset system and custom per-category toggles",
-            "Electron shell for native desktop packaging",
-            "Signed & notarized distributables (.dmg, .exe, .AppImage)"
-        ],
-        "advantages": [
-            "Works as both a desktop app and a web server — one codebase",
-            "Per-category surgical control, not just all-or-nothing",
-            "ICC color profiles and orientation always preserved",
-            "Cross-platform: macOS, Windows, Linux"
-        ],
-        "pitfalls": [
-            "Server mode sends images over the network — not suitable for sensitive files without HTTPS",
-            "TIFF support is limited by sharp library constraints",
-            "No support for RAW formats (CR2, ARW, NEF) in v1"
-        ],
-        "roadmap": [
-            { "task": "Express API: POST /api/read (metadata inspection)", "done": true },
-            { "task": "Express API: POST /api/strip (selective metadata removal)", "done": true },
-            { "task": "React UI: DropZone, MetadataViewer, CriteriaPanel, ResultsPanel", "done": true },
-            { "task": "Preset system: Privacy Mode, Full Clean, Custom", "done": true },
-            { "task": "ZIP batch download via JSZip", "done": true },
-            { "task": "Electron shell: desktop app packaging", "done": true },
-            { "task": "macOS .dmg, Windows .exe, Linux .AppImage distributables", "done": false },
-            { "task": "Code signing & notarization (macOS)", "done": false },
-            { "task": "RAW format support (CR2, ARW, NEF, DNG)", "done": false },
-            { "task": "Before / after metadata diff view", "done": false },
-            { "task": "Metadata export to CSV / JSON before stripping", "done": false }
-        ],
-        "timestamp": "2026-05-19",
-        "images": ["assets/metastrip_mockup.png"],
-        "ai_features": [
-            { "name": "REST API with API Keys", "monetization": "SaaS subscription by volume — developer audience pays reliably", "complexity": "Medium" },
-            { "name": "PDF Metadata Stripping", "monetization": "Expands to legal/HR market — much larger than image-only", "complexity": "Medium" },
-            { "name": "Video Metadata Stripping (MP4, MOV)", "monetization": "Mobile-shot content growth area — GPS in videos is rampant", "complexity": "Medium" },
-            { "name": "White-Label / Self-Hosted Enterprise License", "monetization": "One-time enterprise fee €499–2999 — avoids SaaS pricing objections", "complexity": "Low" },
-            { "name": "GDPR Compliance Audit Report", "monetization": "Legal/compliance premium — signed PDF proof of metadata removal", "complexity": "Medium" },
-            { "name": "Direct URL Processing", "monetization": "Removes biggest friction — no manual download required", "complexity": "Low" },
-            { "name": "Cloud Storage Integration (Google Drive, Dropbox)", "monetization": "Team workflow integration — natural PRO for shared drives", "complexity": "High" },
-            { "name": "Browser Extension", "monetization": "Viral distribution — right-click any web image to strip & download", "complexity": "Medium" },
-            { "name": "Webhook / Automation Integration", "monetization": "Automation-first teams (agencies, newsrooms) — Zapier/Make compatible", "complexity": "Medium" },
-            { "name": "User Accounts & Usage Dashboard", "monetization": "Foundation for all SaaS billing — enables team plans and Stripe", "complexity": "High" }
-        ]
-    },
-    {
-        "id": "VC-005",
-        "title": "PropInsight",
-        "status": "Canceled",
-        "excerpt": "Automated real-estate market analyzer and historical price tracker.",
-        "full_description": "PropInsight is an intelligent real-estate data aggregator designed to provide a comprehensive overview of local property markets. By autonomously scanning major real-estate portals, it captures and cross-references critical data points including historical pricing, geographic distribution, and visual assets.",
-        "features": [
-            "Automated Price Tracking",
-            "Historical Data Archiving",
-            "Spatial Market Distribution Map",
-            "Price Drop Alerts",
-            "Neighborhood Comparative Analytics",
-            "Photo/Asset Archiving"
-        ],
-        "stages": [
-            "Scraping Engine Development (Playwright)",
-            "Data Normalization & PostGIS Setup",
-            "Historical Tracking Logic",
-            "Web UI Dashboard",
-            "Automated Reporting System"
-        ],
-        "advantages": [
-            "Data-driven investment decisions",
-            "Identification of undervalued areas",
-            "Tracking of actual market velocity",
-            "Automated discovery of motivated sellers"
-        ],
-        "pitfalls": [
-            "Anti-scraping measures on major portals",
-            "Data quality/normalization challenges",
-            "High storage requirements for photos",
-            "Legal/Terms of Service compliance"
-        ],
-        "roadmap": [
-            { "task": "Headless scraper (Playwright) for property listings", "done": false },
-            { "task": "PostGIS spatial DB setup for neighborhood grouping", "done": false },
-            { "task": "Price-drop tracking engine + push notifications", "done": false },
-            { "task": "Web UI dashboard for market analysis", "done": false },
-            { "task": "Automated reporting system", "done": false }
-        ],
-        "timestamp": "2026-05-01",
-        "images": ["assets/propinsight_mockup.png"]
-    }
+  {
+    "id": "VC-001",
+    "title": "FileLister",
+    "status": "Completed",
+    "excerpt": "A powerful duplicate file management tool for macOS and cross-platform use.",
+    "full_description": "FileLister is a specialized utility designed to regain storage space by identifying and managing duplicate files. It uses deep cryptographic hashing (SHA-256) to ensure 100% accuracy, moving beyond simple name or size comparisons. It supports local drives, external storage, and cloud-synced folders like OneDrive or Google Drive.",
+    "features": [
+      "SHA-256 Deep Scanning",
+      "Multi-threaded Performance",
+      "Safety Lock Protection",
+      "Media & Hidden File Filtering",
+      "Auto-Selection Rules",
+      "Action Logging"
+    ],
+    "stages": [
+      "Native macOS (Swift/SwiftUI) Implementation",
+      "Cross-Platform Python/PySide6 Port",
+      "Advanced Filtering & Rule System",
+      "Performance Optimization for Large Volumes",
+      "Deployment & Notarization Workflow"
+    ],
+    "advantages": [
+      "Zero false positives with hash verification",
+      "Extremely fast multi-threaded engine",
+      "Prevents accidental data loss",
+      "Clean, premium user interface"
+    ],
+    "pitfalls": [
+      "High RAM usage on multi-million file scans",
+      "OS-specific trash handling complexities",
+      "Cloud-only file (on-demand) access issues"
+    ],
+    "roadmap": [
+      {
+        "task": "Native macOS Swift/SwiftUI implementation",
+        "done": true
+      },
+      {
+        "task": "SHA-256 cryptographic duplicate detection",
+        "done": true
+      },
+      {
+        "task": "Cryptographic license system (v1.2.0)",
+        "done": true
+      },
+      {
+        "task": "Microsoft Entra App Registration for Graph API",
+        "done": false
+      },
+      {
+        "task": "OAuth 2.0 / Device Code flow for OneDrive auth",
+        "done": false
+      },
+      {
+        "task": "Graph API file crawler (names, hashes, sizes, paths)",
+        "done": false
+      },
+      {
+        "task": "Unified local + cloud duplicate report",
+        "done": false
+      },
+      {
+        "task": "Edge case fixes for SHA-256 detection",
+        "done": false
+      }
+    ],
+    "timestamp": "2026-04-10",
+    "images": [
+      "assets/filelister_mockup.png"
+    ],
+    "ai_features": [
+      {
+        "name": "Similar Image Detection (perceptual hash)",
+        "monetization": "Core PRO upsell — photographers pay for near-duplicate detection",
+        "complexity": "High"
+      },
+      {
+        "name": "Storage Analytics Dashboard",
+        "monetization": "Standalone PRO value — disk breakdown, largest & oldest files",
+        "complexity": "Medium"
+      },
+      {
+        "name": "Google Drive Integration",
+        "monetization": "PRO add-on — expands to Google Workspace users",
+        "complexity": "High"
+      },
+      {
+        "name": "Scheduled Auto-Scans + Notifications",
+        "monetization": "Subscription 'Always-on' tier — weekly duplicate watch",
+        "complexity": "Medium"
+      },
+      {
+        "name": "Scan Report Export (PDF / CSV)",
+        "monetization": "B2B / team license — IT admins need audit trails",
+        "complexity": "Low"
+      },
+      {
+        "name": "Finder Extension (Quick Action)",
+        "monetization": "Lowers friction, drives word-of-mouth and conversions",
+        "complexity": "Medium"
+      },
+      {
+        "name": "iCloud Drive Integration",
+        "monetization": "Differentiating PRO feature for macOS/iPhone users",
+        "complexity": "High"
+      },
+      {
+        "name": "Dropbox Integration",
+        "monetization": "PRO add-on — completes the cloud trifecta",
+        "complexity": "High"
+      },
+      {
+        "name": "Duplicate Music / Audio Fingerprinting",
+        "monetization": "Premium niche — music collectors justify higher price point",
+        "complexity": "High"
+      },
+      {
+        "name": "Smart Exclusion Rules & Presets",
+        "monetization": "Power-user PRO — reduces accidental deletion support tickets",
+        "complexity": "Low"
+      }
+    ]
+  },
+  {
+    "id": "VC-002",
+    "title": "VibeCoding Ideas",
+    "status": "In Progress",
+    "excerpt": "A public documentation portal for app concepts and implementation roadmaps.",
+    "full_description": "VibeCoding Ideas is a minimal, content-focused portal designed to publicly document app concepts. It serves as a bridge between rough ideas and full development, providing a space for AI-assisted expansion of descriptions and technical implementation plans.",
+    "features": [
+      "Minimal Glassmorphism Design",
+      "Dynamic JSON-based Content",
+      "AI-Assisted Concept Expansion",
+      "Detailed Implementation Roadmaps",
+      "Automated FTP Deployment",
+      "Responsive Modal Interaction"
+    ],
+    "stages": [
+      "Portal Architecture & Design Tokens",
+      "JSON Data Schema Definition",
+      "Dynamic Rendering Logic (JS)",
+      "AI Forge Integration for Content",
+      "Deployment Automation Scripting"
+    ],
+    "advantages": [
+      "Public accountability for projects",
+      "Easy documentation of initial sparks",
+      "Ready-to-use implementation plans",
+      "Lightweight and extremely fast"
+    ],
+    "pitfalls": [
+      "Requires manual data entry for new ideas",
+      "Potential for 'idea bloat' without execution",
+      "Static nature limits complex interactions"
+    ],
+    "roadmap": [
+      {
+        "task": "Portal architecture, design tokens & glassmorphism UI",
+        "done": true
+      },
+      {
+        "task": "Dynamic JSON-based card rendering",
+        "done": true
+      },
+      {
+        "task": "Modal interaction with full idea detail",
+        "done": true
+      },
+      {
+        "task": "Roadmap section per idea in modal",
+        "done": true
+      },
+      {
+        "task": "Client-side search & category tag filters",
+        "done": false
+      },
+      {
+        "task": "Offline admin screen to draft new ideas as JSON",
+        "done": false
+      }
+    ],
+    "timestamp": "2026-05-01",
+    "images": [
+      "assets/vibecoding_mockup.png"
+    ]
+  },
+  {
+    "id": "VC-003",
+    "title": "DrawIO to Mermaid Converter",
+    "status": "Concept",
+    "excerpt": "A tool to convert visual DrawIO diagrams into maintainable Mermaid.js code.",
+    "full_description": "This tool aims to bridge the gap between visual diagramming and 'Diagrams as Code'. By converting XML-based DrawIO files into Mermaid.js syntax, it allows developers to store diagrams directly in their Git repositories in a readable, diff-able text format.",
+    "features": [
+      "XML/Compressed DrawIO Parsing",
+      "Mermaid.js Syntax Generation",
+      "Live Preview Side-by-Side",
+      "Support for Flowcharts & Sequences",
+      "Batch Conversion Utility",
+      "Git-Friendly Export"
+    ],
+    "stages": [
+      "DrawIO XML Schema Research",
+      "Translation Logic Development",
+      "Web-based Conversion Interface",
+      "Mermaid.js Preview Integration",
+      "CLI tool for CI/CD pipelines"
+    ],
+    "advantages": [
+      "Makes diagrams searchable and diff-able",
+      "Eliminates binary/image file bloat in Git",
+      "Fast iteration through text editing",
+      "Platform independent (Mermaid is universal)"
+    ],
+    "pitfalls": [
+      "Complex DrawIO shapes may not map 1:1",
+      "Styling/Colors might be lost in translation",
+      "DrawIO's nested group structures are complex"
+    ],
+    "roadmap": [
+      {
+        "task": "XML parser: unpack mxGraphModel compressed format",
+        "done": false
+      },
+      {
+        "task": "Shape & connection mapping rules → Mermaid syntax",
+        "done": false
+      },
+      {
+        "task": "Split-screen UI (paste XML left, live Mermaid right)",
+        "done": false
+      },
+      {
+        "task": "CLI wrapper (Node/Python) for Git hooks & CI pipelines",
+        "done": false
+      }
+    ],
+    "timestamp": "2026-05-01",
+    "images": [
+      "assets/drawio_mockup.png"
+    ],
+    "ai_features": [
+      {
+        "name": "Batch File Conversion",
+        "monetization": "Primary PRO unlock — power users hit the single-file limit fast",
+        "complexity": "Medium"
+      },
+      {
+        "name": "Multi-format Export (PlantUML, D2, GraphViz DOT)",
+        "monetization": "PRO add-on — widens appeal beyond Mermaid-only teams",
+        "complexity": "Medium"
+      },
+      {
+        "name": "Additional Diagram Types (Class, ER, State, Gantt)",
+        "monetization": "Enterprise use cases — unlocks engineering & architecture teams",
+        "complexity": "High"
+      },
+      {
+        "name": "REST API with API Key",
+        "monetization": "SaaS subscription by volume — developer audience pays reliably",
+        "complexity": "Medium"
+      },
+      {
+        "name": "GitHub / GitLab Integration",
+        "monetization": "Team plan — 'diagrams as code' migration for engineering orgs",
+        "complexity": "High"
+      },
+      {
+        "name": "VS Code Extension",
+        "monetization": "Free distribution channel — drives web tool and PRO sign-ups",
+        "complexity": "Medium"
+      },
+      {
+        "name": "Mermaid → DrawIO Reverse Conversion",
+        "monetization": "Doubles addressable use case — the other direction of the workflow",
+        "complexity": "High"
+      },
+      {
+        "name": "Conversion History & Cloud Sync",
+        "monetization": "Subscription retention feature — users keep coming back",
+        "complexity": "Medium"
+      },
+      {
+        "name": "Shareable Diagram Links",
+        "monetization": "Viral growth loop — premium for permanent links",
+        "complexity": "Medium"
+      },
+      {
+        "name": "Confluence / Notion Export",
+        "monetization": "Enterprise documentation teams — the biggest DrawIO user segment",
+        "complexity": "High"
+      }
+    ]
+  },
+  {
+    "id": "VC-004",
+    "title": "Agenda Creator",
+    "status": "Concept",
+    "excerpt": "Smart workshop and meeting organizer that optimizes for participant availability.",
+    "full_description": "Agenda Creator automates the coordination of complex workshops and meetings. It collects topics from participants, analyzes their availability, and intelligently finds the best time slot. It then organizes the full workshop schedule and sends automated calendar invites and organized emails.",
+    "features": [
+      "Topic/Agenda Point Collection",
+      "Participant Availability Analysis",
+      "Optimal Slot Recommendation",
+      "Excel/CSV Input Support",
+      "Automated Email Distribution",
+      "Calendar Event Integration"
+    ],
+    "stages": [
+      "Availability Collection Logic",
+      "Agenda Optimization Algorithm",
+      "Email Template Engine",
+      "Calendar API Integrations",
+      "Workshop Management Dashboard"
+    ],
+    "advantages": [
+      "Drastically reduces coordination overhead",
+      "Optimizes time spent in the office",
+      "Ensures all high-priority topics are covered",
+      "Seamless calendar management"
+    ],
+    "pitfalls": [
+      "Complexity of multi-timezone scheduling",
+      "Varying calendar API permissions",
+      "Participant delay in providing topics"
+    ],
+    "roadmap": [
+      {
+        "task": "Project scaffold (Next.js 15 + TypeScript + Tailwind + shadcn/ui)",
+        "done": false
+      },
+      {
+        "task": "Organizer form: create workshop + optional Excel upload",
+        "done": false
+      },
+      {
+        "task": "Participant portal with one-click link & availability input",
+        "done": false
+      },
+      {
+        "task": "Smart scheduling constraint solver engine",
+        "done": false
+      },
+      {
+        "task": "Auto-send final agenda + ICS calendar invites via email",
+        "done": false
+      },
+      {
+        "task": "Organizer dashboard",
+        "done": false
+      },
+      {
+        "task": "Google Workspace & Microsoft 365 calendar integration",
+        "done": false
+      },
+      {
+        "task": "AI-assisted topic clustering & agenda building",
+        "done": false
+      }
+    ],
+    "timestamp": "2026-05-01",
+    "images": [
+      "assets/agenda_mockup.png"
+    ]
+  },
+  {
+    "id": "VC-006",
+    "title": "VisualExif",
+    "status": "In Progress",
+    "excerpt": "Native macOS app for surgical metadata inspection and removal. Protect your privacy before sharing photos.",
+    "full_description": "In an era where every photo carries hidden data — GPS coordinates, device fingerprints, personal timestamps — VisualExif gives you surgical control over what you share. Drag a file, inspect its secrets, and neutralize exactly what you don't want. Built as a native macOS app with a bundled ExifTool engine, it requires zero external dependencies and processes everything locally. Part of the Single Use Apps collection, with a free tier and a one-time €9.99 PRO license.",
+    "features": [
+      "Real-time Metadata Inspector",
+      "Selective Tag Removal (GPS, EXIF, IPTC, XMP, MakerNotes)",
+      "Folder-level Batch Processing",
+      "Bundled ExifTool v13.57 Engine",
+      "Real-time Progress Tracking",
+      "Free + PRO Tier Licensing"
+    ],
+    "stages": [
+      "Core drag & drop UI + metadata inspector",
+      "Selective tag removal engine (PRO)",
+      "Folder batch processing & progress tracking",
+      "ExifTool bundling, signing & notarization",
+      "Free/PRO tier split + license verification system"
+    ],
+    "advantages": [
+      "Zero external dependencies — fully self-contained",
+      "100% local processing — privacy-first by design",
+      "Surgical per-category metadata control",
+      "One-time payment, lifetime license, no subscription"
+    ],
+    "pitfalls": [
+      "macOS only — no Windows or Linux support",
+      "ExifTool must be updated as new formats emerge",
+      "RAW format support varies by camera vendor",
+      "PRO feature gating may slow free-tier adoption"
+    ],
+    "roadmap": [
+      {
+        "task": "Drag & drop interface",
+        "done": true
+      },
+      {
+        "task": "Real-time metadata inspector panel",
+        "done": true
+      },
+      {
+        "task": "Selective tag removal — GPS, EXIF, IPTC, XMP, MakerNotes (PRO)",
+        "done": true
+      },
+      {
+        "task": "Folder batch processing + progress bar",
+        "done": true
+      },
+      {
+        "task": "Bundled ExifTool v13.57 + notarization",
+        "done": true
+      },
+      {
+        "task": "Remove All Metadata — one-click (Free)",
+        "done": false
+      },
+      {
+        "task": "Remove GPS Only (Free)",
+        "done": false
+      },
+      {
+        "task": "Core format support: JPG, PNG, HEIC, TIFF, MOV, MP4 (Free)",
+        "done": false
+      },
+      {
+        "task": "Metadata export — CSV / JSON before cleaning (PRO)",
+        "done": false
+      },
+      {
+        "task": "Before / after metadata comparison view (PRO)",
+        "done": false
+      },
+      {
+        "task": "Preset profiles — Social Media Safe, Press Release, etc. (PRO)",
+        "done": false
+      },
+      {
+        "task": "Rename by metadata fields — date, camera, GPS region (PRO)",
+        "done": false
+      },
+      {
+        "task": "Watch folder — auto-clean new files on arrival (PRO)",
+        "done": false
+      },
+      {
+        "task": "RAW format support — CR2, CR3, ARW, NEF, ORF, DNG (PRO)",
+        "done": false
+      },
+      {
+        "task": "Date Fixer — sync filesystem dates with capture timestamp (PRO)",
+        "done": false
+      },
+      {
+        "task": "Operation history & undo with backed-up originals (PRO)",
+        "done": false
+      }
+    ],
+    "timestamp": "2026-05-18",
+    "images": [],
+    "ai_features": [
+      {
+        "name": "GPS Map View",
+        "monetization": "High-impact PRO demo — seeing your home on a map drives instant conversion",
+        "complexity": "Medium"
+      },
+      {
+        "name": "Metadata Editor (write EXIF)",
+        "monetization": "Opens photographer & journalist market — cleaner becomes full manager",
+        "complexity": "High"
+      },
+      {
+        "name": "Privacy Audit Dashboard",
+        "monetization": "Compliance dashboard with CSV/JSON export; enterprise/legal/journalist positioning; \"Fix All High Risk\" upsell",
+        "complexity": "Medium"
+      },
+      {
+        "name": "Quick Share with Auto-Strip",
+        "monetization": "Daily driver — embedded in macOS Share Sheet, sticky retention",
+        "complexity": "Medium"
+      },
+      {
+        "name": "Metadata Search & Filter across Folder",
+        "monetization": "Power-user PRO — unique in the metadata tool market",
+        "complexity": "Medium"
+      },
+      {
+        "name": "Duplicate Photo Detection (perceptual hash)",
+        "monetization": "Natural PRO bundle with FileLister — same audience, higher ARPU",
+        "complexity": "High"
+      },
+      {
+        "name": "Bulk Rename by Metadata Tokens",
+        "monetization": "Widely requested in photo tool market — photographers will pay",
+        "complexity": "Medium"
+      },
+      {
+        "name": "iCloud Photos Library Integration",
+        "monetization": "Removes biggest friction for iPhone users — differentiating feature",
+        "complexity": "High"
+      },
+      {
+        "name": "Metadata Comparison Across Files",
+        "monetization": "Editorial & team use case — photo editors reviewing batches",
+        "complexity": "Medium"
+      },
+      {
+        "name": "Copyright & Watermark Stamper",
+        "monetization": "Strip competitor metadata, add your own — photographer community",
+        "complexity": "Medium"
+      },
+      {
+        "name": "Batch Keyword Tagging",
+        "monetization": "PRO-only IPTC/XMP keyword writer across entire shoots — natural upsell for photographers who already use the cleaner",
+        "complexity": "Low"
+      },
+      {
+        "name": "Background Watch Folder (MenuBar)",
+        "monetization": "Auto-clean incoming files without opening the app — watch folder as a daemon; differentiates from one-shot competitors",
+        "complexity": "Medium"
+      },
+      {
+        "name": "GDPR Compliance Audit Report",
+        "monetization": "Exportable signed report proving metadata removal; enterprise compliance teams will pay for documentation; strong legal/HR market",
+        "complexity": "Medium"
+      }
+    ]
+  },
+  {
+    "id": "VC-007",
+    "title": "MetaStrip",
+    "status": "In Progress",
+    "excerpt": "Cross-platform image metadata cleaner. Inspect hidden data and strip it — desktop app or self-hosted web server.",
+    "full_description": "Every photo carries hidden data: GPS coordinates, device fingerprints, author names, and timestamps embedded invisibly in the file. MetaStrip surfaces all of it and lets you remove exactly what you choose. Upload JPEG, PNG, or TIFF images, inspect metadata by category, pick a preset (Privacy Mode, Full Clean, or Custom), and download stripped images — individually or as a ZIP. Runs as a native Electron desktop app on macOS, Windows, and Linux, or as a self-hosted Express web server for teams.",
+    "features": [
+      "Drag & Drop Batch Upload (up to 100 files / 100 MB each)",
+      "Full Metadata Inspector (GPS, Timestamps, Author, Camera & Lens)",
+      "Presets: Privacy Mode, Full Clean, Custom Selection",
+      "ZIP Download for Batch Results",
+      "Electron Desktop App (macOS, Windows, Linux)",
+      "Self-Hosted Web Server Mode (Express + React)"
+    ],
+    "stages": [
+      "Core API: metadata read & strip engine (sharp + exifr)",
+      "React Frontend with drag-and-drop and metadata inspector",
+      "Preset system and custom per-category toggles",
+      "Electron shell for native desktop packaging",
+      "Signed & notarized distributables (.dmg, .exe, .AppImage)"
+    ],
+    "advantages": [
+      "Works as both a desktop app and a web server — one codebase",
+      "Per-category surgical control, not just all-or-nothing",
+      "ICC color profiles and orientation always preserved",
+      "Cross-platform: macOS, Windows, Linux"
+    ],
+    "pitfalls": [
+      "Server mode sends images over the network — not suitable for sensitive files without HTTPS",
+      "TIFF support is limited by sharp library constraints",
+      "No support for RAW formats (CR2, ARW, NEF) in v1"
+    ],
+    "roadmap": [
+      {
+        "task": "Express API: POST /api/read (metadata inspection)",
+        "done": true
+      },
+      {
+        "task": "Express API: POST /api/strip (selective metadata removal)",
+        "done": true
+      },
+      {
+        "task": "React UI: DropZone, MetadataViewer, CriteriaPanel, ResultsPanel",
+        "done": true
+      },
+      {
+        "task": "Preset system: Privacy Mode, Full Clean, Custom",
+        "done": true
+      },
+      {
+        "task": "ZIP batch download via JSZip",
+        "done": true
+      },
+      {
+        "task": "Electron shell: desktop app packaging",
+        "done": true
+      },
+      {
+        "task": "macOS .dmg, Windows .exe, Linux .AppImage distributables",
+        "done": false
+      },
+      {
+        "task": "Code signing & notarization (macOS)",
+        "done": false
+      },
+      {
+        "task": "RAW format support (CR2, ARW, NEF, DNG)",
+        "done": false
+      },
+      {
+        "task": "Before / after metadata diff view",
+        "done": false
+      },
+      {
+        "task": "Metadata export to CSV / JSON before stripping",
+        "done": false
+      }
+    ],
+    "timestamp": "2026-05-19",
+    "images": [
+      "assets/metastrip_mockup.png"
+    ],
+    "ai_features": [
+      {
+        "name": "REST API with API Keys",
+        "monetization": "SaaS subscription by volume — developer audience pays reliably",
+        "complexity": "Medium"
+      },
+      {
+        "name": "PDF Metadata Stripping",
+        "monetization": "Expands to legal/HR market — much larger than image-only",
+        "complexity": "Medium"
+      },
+      {
+        "name": "Video Metadata Stripping (MP4, MOV)",
+        "monetization": "Mobile-shot content growth area — GPS in videos is rampant",
+        "complexity": "Medium"
+      },
+      {
+        "name": "White-Label / Self-Hosted Enterprise License",
+        "monetization": "One-time enterprise fee €499–2999 — avoids SaaS pricing objections",
+        "complexity": "Low"
+      },
+      {
+        "name": "GDPR Compliance Audit Report",
+        "monetization": "Legal/compliance premium — signed PDF proof of metadata removal",
+        "complexity": "Medium"
+      },
+      {
+        "name": "Direct URL Processing",
+        "monetization": "Removes biggest friction — no manual download required",
+        "complexity": "Low"
+      },
+      {
+        "name": "Cloud Storage Integration (Google Drive, Dropbox)",
+        "monetization": "Team workflow integration — natural PRO for shared drives",
+        "complexity": "High"
+      },
+      {
+        "name": "Browser Extension",
+        "monetization": "Viral distribution — right-click any web image to strip & download",
+        "complexity": "Medium"
+      },
+      {
+        "name": "Webhook / Automation Integration",
+        "monetization": "Automation-first teams (agencies, newsrooms) — Zapier/Make compatible",
+        "complexity": "Medium"
+      },
+      {
+        "name": "User Accounts & Usage Dashboard",
+        "monetization": "Foundation for all SaaS billing — enables team plans and Stripe",
+        "complexity": "High"
+      }
+    ]
+  },
+  {
+    "id": "VC-005",
+    "title": "PropInsight",
+    "status": "Canceled",
+    "excerpt": "Automated real-estate market analyzer and historical price tracker.",
+    "full_description": "PropInsight is an intelligent real-estate data aggregator designed to provide a comprehensive overview of local property markets. By autonomously scanning major real-estate portals, it captures and cross-references critical data points including historical pricing, geographic distribution, and visual assets.",
+    "features": [
+      "Automated Price Tracking",
+      "Historical Data Archiving",
+      "Spatial Market Distribution Map",
+      "Price Drop Alerts",
+      "Neighborhood Comparative Analytics",
+      "Photo/Asset Archiving"
+    ],
+    "stages": [
+      "Scraping Engine Development (Playwright)",
+      "Data Normalization & PostGIS Setup",
+      "Historical Tracking Logic",
+      "Web UI Dashboard",
+      "Automated Reporting System"
+    ],
+    "advantages": [
+      "Data-driven investment decisions",
+      "Identification of undervalued areas",
+      "Tracking of actual market velocity",
+      "Automated discovery of motivated sellers"
+    ],
+    "pitfalls": [
+      "Anti-scraping measures on major portals",
+      "Data quality/normalization challenges",
+      "High storage requirements for photos",
+      "Legal/Terms of Service compliance"
+    ],
+    "roadmap": [
+      {
+        "task": "Headless scraper (Playwright) for property listings",
+        "done": false
+      },
+      {
+        "task": "PostGIS spatial DB setup for neighborhood grouping",
+        "done": false
+      },
+      {
+        "task": "Price-drop tracking engine + push notifications",
+        "done": false
+      },
+      {
+        "task": "Web UI dashboard for market analysis",
+        "done": false
+      },
+      {
+        "task": "Automated reporting system",
+        "done": false
+      }
+    ],
+    "timestamp": "2026-05-01",
+    "images": [
+      "assets/propinsight_mockup.png"
+    ]
+  }
 ]
