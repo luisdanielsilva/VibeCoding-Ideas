@@ -41,6 +41,18 @@
         "done": true
       },
       {
+        "task": "Python-based secure key generator integration",
+        "done": true
+      },
+      {
+        "task": "Clear legacy registration data",
+        "done": true
+      },
+      {
+        "task": "Deploy release v1.2.0",
+        "done": true
+      },
+      {
         "task": "Cryptographic license system (v1.2.0)",
         "done": true
       },
