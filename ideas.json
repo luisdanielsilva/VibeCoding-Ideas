@@ -178,6 +178,14 @@
       {
         "task": "Offline admin screen to draft new ideas as JSON",
         "done": false
+      },
+      {
+        "task": "Download counter per app — track total downloads and display live count on each idea card",
+        "done": false
+      },
+      {
+        "task": "License buyer registry — store purchaser email, license key, app ID, and purchase date; accessible via a private admin view",
+        "done": false
       }
     ],
     "timestamp": "2026-05-01",
