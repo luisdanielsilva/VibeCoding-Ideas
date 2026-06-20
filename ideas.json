@@ -750,5 +750,170 @@
     "images": [
       "assets/propinsight_mockup.png"
     ]
+  },
+  {
+    "id": "VC-008",
+    "title": "StockSentinel",
+    "status": "Concept",
+    "excerpt": "Personal stock watchlist and portfolio tracker with real-time price alerts, on-demand news feed, and automated email decision prompts.",
+    "full_description": "StockSentinel is a web-based stock tracker and alert system for self-directed investors. You build a list of tickers — marking each as Watching (candidate) or Holding (position you own, with cost basis and quantity) — and the app monitors them continuously in real time. When a configured alert condition fires (e.g. a 20% intraday drop), you receive an email within seconds, not at the end of the day. Charts cover the full historical range of a stock with timeframe selectors from 1D to All, and a dedicated Historical Analysis view lets you explore the lowest and highest points a stock ever reached, with annotations marking when they occurred. The platform supports a small number of trusted users: each account has its own watchlist, portfolio, alert rules, and notification settings, all stored in a relational database. An on-demand News panel fetches the latest headlines from the past 3 months (via Google News RSS) for any ticker, shown only when the user explicitly requests it. All values display in EUR or USD.",
+    "features": [
+      "Watchlist + Portfolio dual-mode per ticker (Watching vs Holding)",
+      "Real-time price monitoring with intraday alert evaluation via Finnhub WebSocket",
+      "Detailed interactive charts — 1D / 5D / 1M / 6M / YTD / 1Y / 5Y / All timeframes",
+      "Historical Analysis view — all-time low/high with date annotations and drawdown chart",
+      "Key financials panel: market cap, P/E, EPS, beta, 52-week range, day range, volume",
+      "EUR / USD currency toggle with live FX conversion",
+      "P&L tracker per position: entry price, current value, gain/loss %",
+      "Per-stock alert rule builder: below price / % drop / sudden move / above price",
+      "Immediate email alerts with decision-prompt template (Buy / Sell / Hold / Dismiss)",
+      "On-demand News panel — last 3 months of headlines per ticker, fetched on request",
+      "Multi-user support (2–3 trusted users) with individual accounts and private portfolios",
+      "Relational database for all user data: accounts, watchlists, positions, rules, alert history"
+    ],
+    "stages": [
+      "Database schema + auth layer (users, sessions, watchlist, positions, alert rules, alert log)",
+      "Finnhub WebSocket real-time feed integration + REST historical OHLCV fallback",
+      "Watchlist & portfolio CRUD per user — ticker search, mode, cost basis, quantity",
+      "Interactive chart component (TradingView Lightweight Charts) — all timeframes",
+      "Historical Analysis view — all-time extremes with date markers and drawdown visualization",
+      "Key financials panel and EUR/USD toggle with live FX conversion",
+      "Real-time alert engine — evaluates rules against live feed, fires immediately on match",
+      "Email notification engine (Resend) + decision-prompt template + alert history log",
+      "On-demand News panel — Google News RSS per ticker, 3-month window, user-triggered"
+    ],
+    "advantages": [
+      "Real-time alerts — fires the moment a condition is met, not hours later",
+      "Multi-user with private data isolation — safe for a small trusted circle",
+      "Self-hosted and private — no data shared with third parties",
+      "Tracks both intent (watchlist) and actual positions (portfolio) in one place",
+      "Decision-first email design — not just a notification, a prompt to act",
+      "Historical Analysis turns charts into research tools, not just price displays",
+      "News on demand — context behind moves without constant background noise",
+      "EUR support out of the box (most tools default USD-only)"
+    ],
+    "pitfalls": [
+      "Real-time data via Finnhub free tier has WebSocket connection and message limits",
+      "Continuous WebSocket feed requires a persistent server (not compatible with serverless deploys)",
+      "Email deliverability requires a configured transactional sending service (Resend, SendGrid)",
+      "Google News RSS scraping may break if feed structure changes or rate-limits kick in",
+      "FX conversion adds a second external API dependency",
+      "Multi-user auth adds complexity: sessions, password management, per-user data isolation"
+    ],
+    "roadmap": [
+      {
+        "task": "Project scaffold (Next.js 15 + TypeScript + Tailwind + shadcn/ui)",
+        "done": false
+      },
+      {
+        "task": "Database schema: users, watchlist entries, positions, alert rules, alert history (PostgreSQL + Prisma)",
+        "done": false
+      },
+      {
+        "task": "Auth: registration (invite-only), login, session management",
+        "done": false
+      },
+      {
+        "task": "Finnhub WebSocket integration for real-time price feed",
+        "done": false
+      },
+      {
+        "task": "Historical OHLCV data fetch via Finnhub REST + local caching",
+        "done": false
+      },
+      {
+        "task": "Watchlist CRUD per user: add ticker, set mode (Watching / Holding), cost basis, quantity",
+        "done": false
+      },
+      {
+        "task": "Interactive price chart — TradingView Lightweight Charts, all timeframes (1D → All)",
+        "done": false
+      },
+      {
+        "task": "Historical Analysis view: all-time high/low with date markers, drawdown chart",
+        "done": false
+      },
+      {
+        "task": "Key financials panel: market cap, P/E, EPS, beta, 52-week/day range, volume",
+        "done": false
+      },
+      {
+        "task": "EUR/USD toggle with live FX conversion",
+        "done": false
+      },
+      {
+        "task": "P&L dashboard: per-position and portfolio aggregate gain/loss",
+        "done": false
+      },
+      {
+        "task": "Alert rule builder per ticker per user: below price / % drop / sudden move / above price",
+        "done": false
+      },
+      {
+        "task": "Real-time alert engine: evaluates rules against Finnhub feed, fires on condition match",
+        "done": false
+      },
+      {
+        "task": "Email notification engine (Resend) + decision-prompt template (Buy / Sell / Hold / Dismiss)",
+        "done": false
+      },
+      {
+        "task": "Alert history log per user: what fired, when, what decision was recorded",
+        "done": false
+      },
+      {
+        "task": "On-demand News panel: Google News RSS per ticker, 3-month window, user-triggered",
+        "done": false
+      }
+    ],
+    "timestamp": "2026-06-20",
+    "images": [],
+    "ai_features": [
+      {
+        "name": "AI Entry Point Suggestion (historical pattern analysis)",
+        "monetization": "PRO — reduces decision anxiety, high perceived value for active traders",
+        "complexity": "High"
+      },
+      {
+        "name": "Portfolio Correlation Analysis (overexposure warnings)",
+        "monetization": "PRO — risk management layer for self-directed investors",
+        "complexity": "Medium"
+      },
+      {
+        "name": "News Sentiment Scoring (auto-classify headlines as bullish / bearish)",
+        "monetization": "PRO add-on — surfaces the why behind price moves without manual reading",
+        "complexity": "Medium"
+      },
+      {
+        "name": "Smart Alert Threshold Tuning (based on stock beta / historical volatility)",
+        "monetization": "PRO — prevents alert fatigue on high-beta stocks like Tesla",
+        "complexity": "Medium"
+      },
+      {
+        "name": "Multi-Ticker Comparison Chart Overlay",
+        "monetization": "Core PRO upsell — essential for relative value and sector comparisons",
+        "complexity": "Low"
+      },
+      {
+        "name": "Broker CSV Import (Degiro, Interactive Brokers) to auto-populate portfolio",
+        "monetization": "Removes biggest onboarding friction — drives adoption and retention",
+        "complexity": "Medium"
+      },
+      {
+        "name": "Mobile PWA + Push Notifications",
+        "monetization": "Retention — alerts reach you without relying solely on email",
+        "complexity": "Medium"
+      },
+      {
+        "name": "Watchlist Sharing (public read-only link with investment thesis)",
+        "monetization": "Viral growth loop — share your conviction publicly",
+        "complexity": "Medium"
+      },
+      {
+        "name": "Analyst Price Target Consensus Overlay on Chart",
+        "monetization": "Research-grade PRO feature — shows where professionals expect the stock to go",
+        "complexity": "High"
+      }
+    ]
   }
 ]
