@@ -867,7 +867,9 @@
       }
     ],
     "timestamp": "2026-06-20",
-    "images": [],
+    "images": [
+      "assets/stocksentinel_mockup.svg"
+    ],
     "ai_features": [
       {
         "name": "AI Entry Point Suggestion (historical pattern analysis)",
