@@ -923,14 +923,17 @@
     "title": "SmartBOM Optimizer",
     "status": "Concept",
     "excerpt": "AI tool that reads a BOM exported from any major PCB design tool, detects duplicate or near-equivalent components, and proposes part-number consolidations with a projected € savings estimate.",
-    "full_description": "Hardware teams routinely end up with BOMs full of near-duplicate components — the same resistor value sourced under three different part numbers, or capacitors with equivalent specs scattered across a project because different engineers each picked their own. Reviewing this manually is slow but valuable: on large projects with multiple BOMs and thousands of components, consolidating parts can produce real, immediately visible savings. SmartBOM Optimizer automates that review. It ingests a BOM exported from any of the leading PCB design tools, has AI scan every line for repeated or near-identical components (same value within tolerance, equivalent footprint/specs), and proposes concrete optimizations — merging part numbers, standardizing on a single preferred PN, flagging substitution candidates. Connected to a company's ERP/PLM system (e.g. SAP) — live via API or through a periodically exported list of approved/in-stock components — it can restrict suggestions to parts that are already approved and in stock, turning it from a spreadsheet trick into a genuine sourcing tool. Because the value is easy to prove, the tool can simulate savings on historical BOMs before ever touching a live project, showing the projected result directly in euros. Since virtually every major ECAD tool exports BOMs as CSV or Excel with a large overlap of common columns (Designator/Reference, Value/Comment, Footprint/Package, Quantity, MPN), the importer is built as one flexible column-mapping engine with ready-made presets for the top 10 tools, rather than ten bespoke parsers — and the optimized BOM is exported back in the same universal format so it can be re-imported into whichever tool the design came from.",
+    "full_description": "Hardware teams routinely end up with BOMs full of near-duplicate components — the same resistor value sourced under three different part numbers, or capacitors with equivalent specs scattered across a project because different engineers each picked their own. Reviewing this manually is slow but valuable: on large projects with multiple BOMs and thousands of components, consolidating parts can produce real, immediately visible savings. SmartBOM Optimizer automates that review, working entirely from the BOM itself with no external supplier or pricing database required. It ingests a BOM exported from any of the leading PCB design tools, has AI scan every line for repeated or near-identical components (same value within tolerance, equivalent footprint/specs, same or overlapping manufacturer), and groups them into consolidation candidates. Each group is scored by confidence — exact duplicates can be merged with one click, near-equivalents are flagged for review, and inconsistencies (like a stray 0.1% tolerance part among a batch of 1% parts) are surfaced as informational flags rather than forced merges. Crucially, review happens at the individual component-line level, not just the group level: a user can expand any group and choose exactly which lines to merge, since some duplicates are intentional (e.g. a deliberate second source). Lines left unmerged can be marked as an intentional exception so the tool remembers the decision and stops re-flagging it on future runs of the same BOM. A KPI summary — duplicate groups found, lines consolidated before/after, distinct PNs before/after — gives an immediate sense of impact, with an € savings figure shown (grayed out if unavailable) only when the input BOM already includes a cost column, since fabricating a savings number without real pricing data would undermine trust in the tool. Connected to a company's ERP/PLM system (e.g. SAP) — live via API or through a periodically exported list of approved/in-stock components — the same engine can also restrict suggestions to parts that are already approved and in stock, turning it from a spreadsheet trick into a genuine sourcing tool, and the value is easy to prove by simulating savings on historical BOMs before ever touching a live project. Since virtually every major ECAD tool exports BOMs as CSV or Excel with a large overlap of common columns (Designator/Reference, Value/Comment, Footprint/Package, Quantity, MPN), the importer is built as one flexible column-mapping engine with ready-made presets for the top 10 tools, rather than ten bespoke parsers — and the optimized BOM is exported back in the same universal format so it can be re-imported into whichever tool the design came from.",
     "features": [
       "Universal BOM Import — flexible column-mapping importer with presets for the top 10 PCB design tools",
       "AI Duplicate & Near-Match Component Detection (value tolerance, equivalent footprint/specs)",
-      "Part-Number Consolidation Suggestions",
+      "Confidence-Scored Grouping — Exact Duplicate / Near-Equivalent / Flagged Inconsistency",
+      "Per-Line Review — expand any group and select exactly which lines to merge",
+      "Intentional Exception Memory — mark a line as deliberate (e.g. second source) so future runs stop re-flagging it",
+      "KPI Summary Dashboard (duplicate groups found, lines consolidated, distinct PNs before/after)",
+      "€ Savings Estimator per Optimization (shown only when the BOM includes a cost column)",
       "ERP/PLM Integration (e.g. SAP) — Approved & In-Stock Component Lookup",
       "Offline Mode — Match Against an Exported ERP Component List",
-      "€ Savings Estimator per Optimization",
       "Multi-BOM / Multi-Project Batch Analysis",
       "Before / After BOM Comparison Report",
       "Universal CSV/Excel Export — re-importable into the originating design tool"
@@ -938,10 +941,11 @@
     "stages": [
       "Research: BOM export formats & common fields across the top 10 PCB design tools",
       "Universal BOM Parsing & Normalization Layer (flexible column mapping + tool presets)",
-      "AI Similarity Engine (duplicate values, tolerances, equivalent specs)",
+      "AI Similarity Engine (duplicate values, tolerances, equivalent specs) with confidence scoring",
+      "Review UI: expandable groups, per-line checkboxes, intentional-exception memory",
       "ERP Connector or Manual Export Matching Layer",
-      "Savings Calculation & Reporting Engine",
-      "Web UI for Review & Approval of Suggested Merges"
+      "Savings Calculation & Reporting Engine (conditional on cost data availability)",
+      "KPI Dashboard & Before/After Comparison View"
     ],
     "advantages": [
       "Turns hours of manual BOM review into minutes",
@@ -949,6 +953,8 @@
       "Easy to prove ROI by simulating against old projects first",
       "Scales to thousands of components across multiple BOMs",
       "Works with any major PCB design tool through a single universal importer",
+      "Respects intentional duplicates instead of forcing blanket merges",
+      "Remembers past exceptions, so review gets faster every time the same BOM is re-run",
       "Becomes far more powerful once tied to real stock/approval data (ERP)"
     ],
     "pitfalls": [
@@ -956,7 +962,8 @@
       "Component 'similarity' (values, tolerances, footprints) needs careful rules to avoid unsafe substitutions",
       "Without live ERP access, relies on someone periodically exporting an approved-components list",
       "Engineering sign-off still required before any part-number merge ships to production",
-      "Some tools export non-standard delimiters/encodings (e.g. tab-delimited files with a .csv extension) that the importer must detect and normalize"
+      "Some tools export non-standard delimiters/encodings (e.g. tab-delimited files with a .csv extension) that the importer must detect and normalize",
+      "Displaying a savings € figure without real cost data would be misleading, so it must stay conditional on the BOM actually containing pricing"
     ],
     "roadmap": [
       {
@@ -972,7 +979,27 @@
         "done": false
       },
       {
+        "task": "Confidence scoring per group (exact duplicate / near-equivalent / flagged inconsistency)",
+        "done": false
+      },
+      {
         "task": "Consolidation suggestion engine (merge PNs, pick a preferred PN)",
+        "done": false
+      },
+      {
+        "task": "Expandable group UI with per-line checkboxes for selective merging",
+        "done": false
+      },
+      {
+        "task": "Intentional-exception memory — persist unmerged lines as deliberate and suppress re-flagging on future runs",
+        "done": false
+      },
+      {
+        "task": "KPI summary dashboard: duplicate groups found, lines consolidated, distinct PNs before/after",
+        "done": false
+      },
+      {
+        "task": "€ savings calculator — active only when the input BOM includes a cost/unit-price column",
         "done": false
       },
       {
@@ -981,10 +1008,6 @@
       },
       {
         "task": "Live ERP API integration for real-time approved/stock lookup",
-        "done": false
-      },
-      {
-        "task": "€ savings calculator per suggested optimization",
         "done": false
       },
       {
@@ -1019,6 +1042,11 @@
       {
         "name": "Multi-BOM Batch Processing",
         "monetization": "Team/Enterprise tier — process entire product lines at once",
+        "complexity": "Medium"
+      },
+      {
+        "name": "Intentional Exception Memory (learns which duplicates to leave alone)",
+        "monetization": "Retention driver — the tool gets smarter and faster to review on every re-run of the same project",
         "complexity": "Medium"
       },
       {
