@@ -922,22 +922,24 @@
     "id": "VC-009",
     "title": "SmartBOM Optimizer",
     "status": "Concept",
-    "excerpt": "AI tool that reads an Excel BOM, detects duplicate or near-equivalent components, and proposes part-number consolidations with a projected € savings estimate.",
-    "full_description": "SmartBOM Optimizer automates a task Luis has done manually multiple times on real projects with several BOMs and thousands of components: importing a Bill of Materials from Excel, having AI scan every line for repeated components or components with near-identical values/specs, and proposing concrete optimizations — merging part numbers, standardizing on a single approved PN, flagging candidates for substitution. Connected to SAP (or a periodically exported list of approved/in-stock components), it can restrict suggestions to parts that are already approved and in stock, turning it from a spreadsheet trick into a genuine sourcing tool. Because the value is immediate and easy to back-test against old projects, the tool can simulate savings on historical BOMs before ever touching a live one — and show the result directly in euros.",
+    "excerpt": "AI tool that reads a BOM exported from any major PCB design tool, detects duplicate or near-equivalent components, and proposes part-number consolidations with a projected € savings estimate.",
+    "full_description": "Hardware teams routinely end up with BOMs full of near-duplicate components — the same resistor value sourced under three different part numbers, or capacitors with equivalent specs scattered across a project because different engineers each picked their own. Reviewing this manually is slow but valuable: on large projects with multiple BOMs and thousands of components, consolidating parts can produce real, immediately visible savings. SmartBOM Optimizer automates that review. It ingests a BOM exported from any of the leading PCB design tools, has AI scan every line for repeated or near-identical components (same value within tolerance, equivalent footprint/specs), and proposes concrete optimizations — merging part numbers, standardizing on a single preferred PN, flagging substitution candidates. Connected to a company's ERP/PLM system (e.g. SAP) — live via API or through a periodically exported list of approved/in-stock components — it can restrict suggestions to parts that are already approved and in stock, turning it from a spreadsheet trick into a genuine sourcing tool. Because the value is easy to prove, the tool can simulate savings on historical BOMs before ever touching a live project, showing the projected result directly in euros. Since virtually every major ECAD tool exports BOMs as CSV or Excel with a large overlap of common columns (Designator/Reference, Value/Comment, Footprint/Package, Quantity, MPN), the importer is built as one flexible column-mapping engine with ready-made presets for the top 10 tools, rather than ten bespoke parsers — and the optimized BOM is exported back in the same universal format so it can be re-imported into whichever tool the design came from.",
     "features": [
-      "Excel/CSV BOM Import & Parsing",
-      "AI Duplicate & Near-Match Component Detection",
+      "Universal BOM Import — flexible column-mapping importer with presets for the top 10 PCB design tools",
+      "AI Duplicate & Near-Match Component Detection (value tolerance, equivalent footprint/specs)",
       "Part-Number Consolidation Suggestions",
-      "SAP Integration — Approved & In-Stock Component Lookup",
-      "Offline Mode — Match Against an Exported SAP Component List",
+      "ERP/PLM Integration (e.g. SAP) — Approved & In-Stock Component Lookup",
+      "Offline Mode — Match Against an Exported ERP Component List",
       "€ Savings Estimator per Optimization",
       "Multi-BOM / Multi-Project Batch Analysis",
-      "Before / After BOM Comparison Report"
+      "Before / After BOM Comparison Report",
+      "Universal CSV/Excel Export — re-importable into the originating design tool"
     ],
     "stages": [
-      "Excel/CSV Parsing & BOM Data Normalization",
+      "Research: BOM export formats & common fields across the top 10 PCB design tools",
+      "Universal BOM Parsing & Normalization Layer (flexible column mapping + tool presets)",
       "AI Similarity Engine (duplicate values, tolerances, equivalent specs)",
-      "SAP Connector or Manual Export Matching Layer",
+      "ERP Connector or Manual Export Matching Layer",
       "Savings Calculation & Reporting Engine",
       "Web UI for Review & Approval of Suggested Merges"
     ],
@@ -946,17 +948,23 @@
       "Immediate, quantifiable gains on any new project",
       "Easy to prove ROI by simulating against old projects first",
       "Scales to thousands of components across multiple BOMs",
-      "Becomes far more powerful once tied to real stock/approval data (SAP)"
+      "Works with any major PCB design tool through a single universal importer",
+      "Becomes far more powerful once tied to real stock/approval data (ERP)"
     ],
     "pitfalls": [
-      "SAP integration access and permissions can be a bottleneck to get set up",
+      "ERP integration access and permissions can be a bottleneck to set up",
       "Component 'similarity' (values, tolerances, footprints) needs careful rules to avoid unsafe substitutions",
-      "Without live SAP access, relies on someone periodically exporting an approved-components list",
-      "Engineering sign-off still required before any part-number merge ships to production"
+      "Without live ERP access, relies on someone periodically exporting an approved-components list",
+      "Engineering sign-off still required before any part-number merge ships to production",
+      "Some tools export non-standard delimiters/encodings (e.g. tab-delimited files with a .csv extension) that the importer must detect and normalize"
     ],
     "roadmap": [
       {
-        "task": "Excel/CSV BOM import and column mapping",
+        "task": "Universal CSV/Excel BOM import with configurable column mapping",
+        "done": false
+      },
+      {
+        "task": "Built-in import presets for top 10 PCB tools (Altium, KiCad, OrCAD/Allegro, PADS/Xpedition, EasyEDA, Autodesk Fusion Electronics/Eagle, Zuken CR-8000/CADSTAR, Altium CircuitMaker, DipTrace, Flux.ai)",
         "done": false
       },
       {
@@ -968,11 +976,11 @@
         "done": false
       },
       {
-        "task": "SAP export matching mode (upload approved/in-stock component list)",
+        "task": "ERP export matching mode (upload approved/in-stock component list)",
         "done": false
       },
       {
-        "task": "Live SAP API integration for real-time approved/stock lookup",
+        "task": "Live ERP API integration for real-time approved/stock lookup",
         "done": false
       },
       {
@@ -984,7 +992,7 @@
         "done": false
       },
       {
-        "task": "Review UI: accept/reject suggestions, export final optimized BOM",
+        "task": "Review UI: accept/reject suggestions, export final optimized BOM in universal CSV/Excel format",
         "done": false
       }
     ],
@@ -994,13 +1002,13 @@
     ],
     "ai_features": [
       {
-        "name": "Live SAP API Integration (approved + in-stock lookup)",
+        "name": "Live ERP/PLM API Integration (approved + in-stock lookup)",
         "monetization": "Core enterprise upsell — turns the tool into a real sourcing system, not just a checker",
         "complexity": "High"
       },
       {
         "name": "Cross-Reference & Alternate Part Suggestions",
-        "monetization": "PRO add-on — inspired by Wizerr-style cross-referencing for parts with no internal match",
+        "monetization": "PRO add-on — surfaces alternates for parts with no internal match",
         "complexity": "High"
       },
       {
@@ -1019,7 +1027,17 @@
         "complexity": "Low"
       },
       {
-        "name": "ERP/PLM Sync (beyond SAP — e.g. Oracle, Dynamics)",
+        "name": "Design-Variant / DNP-Aware BOM Handling",
+        "monetization": "PRO — correctly excludes Do-Not-Populate lines and per-variant BOMs from optimization, a common feature across Altium, OrCAD, KiCad and PADS",
+        "complexity": "Medium"
+      },
+      {
+        "name": "Live Supply-Chain Pricing Overlay (Octopart/distributor feeds)",
+        "monetization": "PRO — mirrors ActiveBOM/Live BOM style real-time pricing seen in Altium and OrCAD",
+        "complexity": "High"
+      },
+      {
+        "name": "ERP/PLM Sync Beyond SAP (e.g. Oracle, Dynamics)",
         "monetization": "Enterprise license — widens addressable market beyond SAP shops",
         "complexity": "High"
       },
