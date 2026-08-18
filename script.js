@@ -96,13 +96,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
 
-            ${idea.roadmap && idea.roadmap.length > 0 ? `
+            ${idea.roadmap && idea.roadmap.some(item => !item.done) ? `
             <div class="modal-section">
-                <h3>Roadmap</h3>
+                <h3>Features to implement</h3>
                 <div class="roadmap-container">
-                    ${idea.roadmap.map(item => `
-                        <div class="roadmap-item ${item.done ? 'roadmap-done' : ''}">
-                            <span class="roadmap-check">${item.done ? '✓' : '○'}</span>
+                    ${idea.roadmap.filter(item => !item.done).map(item => `
+                        <div class="roadmap-item">
+                            <span class="roadmap-check">○</span>
+                            <span class="roadmap-task">${item.task}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+            ` : ''}
+
+            ${idea.roadmap && idea.roadmap.some(item => item.done) ? `
+            <div class="modal-section">
+                <h3>Shipped</h3>
+                <div class="roadmap-container">
+                    ${idea.roadmap.filter(item => item.done).map(item => `
+                        <div class="roadmap-item roadmap-done">
+                            <span class="roadmap-check">✓</span>
                             <span class="roadmap-task">${item.task}</span>
                         </div>
                     `).join('')}
