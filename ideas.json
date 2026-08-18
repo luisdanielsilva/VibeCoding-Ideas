@@ -77,8 +77,8 @@
         "done": false
       },
       {
-        "task": "Contact form: allow feature requests, not only support questions",
-        "done": false
+        "task": "Contact/Feature Request form",
+        "done": true
       },
       {
         "task": "Similar Image Detection (perceptual hash)",
