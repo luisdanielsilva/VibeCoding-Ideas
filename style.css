@@ -348,8 +348,19 @@ h1 {
     color: var(--text-secondary);
 }
 
+.roadmap-task-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
 .roadmap-task {
     color: var(--text-secondary);
+}
+
+.roadmap-meta {
+    font-size: 0.75rem;
+    color: #666;
 }
 
 .roadmap-done .roadmap-check {

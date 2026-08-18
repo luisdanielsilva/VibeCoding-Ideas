@@ -103,7 +103,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     ${idea.roadmap.filter(item => !item.done).map(item => `
                         <div class="roadmap-item">
                             <span class="roadmap-check">○</span>
-                            <span class="roadmap-task">${item.task}</span>
+                            <div class="roadmap-task-wrap">
+                                <span class="roadmap-task">${item.task}</span>
+                                ${item.complexity ? `<span class="roadmap-meta">${item.complexity}${item.monetization ? ' · ' + item.monetization : ''}</span>` : ''}
+                            </div>
                         </div>
                     `).join('')}
                 </div>
@@ -121,32 +124,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     `).join('')}
                 </div>
-            </div>
-            ` : ''}
-
-            ${idea.ai_features && idea.ai_features.length > 0 ? `
-            <div class="modal-section">
-                <h3>AI Proposed Features</h3>
-                <table class="ai-features-table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Feature</th>
-                            <th>Monetization</th>
-                            <th>Complexity</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${idea.ai_features.map((f, i) => `
-                            <tr>
-                                <td>${i + 1}</td>
-                                <td>${f.name}</td>
-                                <td>${f.monetization}</td>
-                                <td class="complexity-${f.complexity.toLowerCase()}">${f.complexity}</td>
-                            </tr>
-                        `).join('')}
-                    </tbody>
-                </table>
             </div>
             ` : ''}
 

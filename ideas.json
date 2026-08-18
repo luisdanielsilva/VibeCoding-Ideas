@@ -79,63 +79,71 @@
       {
         "task": "Contact form: allow feature requests, not only support questions",
         "done": false
+      },
+      {
+        "task": "Similar Image Detection (perceptual hash)",
+        "done": false,
+        "monetization": "Core PRO upsell — photographers pay for near-duplicate detection",
+        "complexity": "High"
+      },
+      {
+        "task": "Storage Analytics Dashboard",
+        "done": false,
+        "monetization": "Standalone PRO value — disk breakdown, largest & oldest files",
+        "complexity": "Medium"
+      },
+      {
+        "task": "Google Drive Integration",
+        "done": false,
+        "monetization": "PRO add-on — expands to Google Workspace users",
+        "complexity": "High"
+      },
+      {
+        "task": "Scheduled Auto-Scans + Notifications",
+        "done": false,
+        "monetization": "Subscription 'Always-on' tier — weekly duplicate watch",
+        "complexity": "Medium"
+      },
+      {
+        "task": "Scan Report Export (PDF / CSV)",
+        "done": false,
+        "monetization": "B2B / team license — IT admins need audit trails",
+        "complexity": "Low"
+      },
+      {
+        "task": "Finder Extension (Quick Action)",
+        "done": false,
+        "monetization": "Lowers friction, drives word-of-mouth and conversions",
+        "complexity": "Medium"
+      },
+      {
+        "task": "iCloud Drive Integration",
+        "done": false,
+        "monetization": "Differentiating PRO feature for macOS/iPhone users",
+        "complexity": "High"
+      },
+      {
+        "task": "Dropbox Integration",
+        "done": false,
+        "monetization": "PRO add-on — completes the cloud trifecta",
+        "complexity": "High"
+      },
+      {
+        "task": "Duplicate Music / Audio Fingerprinting",
+        "done": false,
+        "monetization": "Premium niche — music collectors justify higher price point",
+        "complexity": "High"
+      },
+      {
+        "task": "Smart Exclusion Rules & Presets",
+        "done": false,
+        "monetization": "Power-user PRO — reduces accidental deletion support tickets",
+        "complexity": "Low"
       }
     ],
     "timestamp": "2026-04-10",
     "images": [
       "assets/filelister_mockup.png"
-    ],
-    "ai_features": [
-      {
-        "name": "Similar Image Detection (perceptual hash)",
-        "monetization": "Core PRO upsell — photographers pay for near-duplicate detection",
-        "complexity": "High"
-      },
-      {
-        "name": "Storage Analytics Dashboard",
-        "monetization": "Standalone PRO value — disk breakdown, largest & oldest files",
-        "complexity": "Medium"
-      },
-      {
-        "name": "Google Drive Integration",
-        "monetization": "PRO add-on — expands to Google Workspace users",
-        "complexity": "High"
-      },
-      {
-        "name": "Scheduled Auto-Scans + Notifications",
-        "monetization": "Subscription 'Always-on' tier — weekly duplicate watch",
-        "complexity": "Medium"
-      },
-      {
-        "name": "Scan Report Export (PDF / CSV)",
-        "monetization": "B2B / team license — IT admins need audit trails",
-        "complexity": "Low"
-      },
-      {
-        "name": "Finder Extension (Quick Action)",
-        "monetization": "Lowers friction, drives word-of-mouth and conversions",
-        "complexity": "Medium"
-      },
-      {
-        "name": "iCloud Drive Integration",
-        "monetization": "Differentiating PRO feature for macOS/iPhone users",
-        "complexity": "High"
-      },
-      {
-        "name": "Dropbox Integration",
-        "monetization": "PRO add-on — completes the cloud trifecta",
-        "complexity": "High"
-      },
-      {
-        "name": "Duplicate Music / Audio Fingerprinting",
-        "monetization": "Premium niche — music collectors justify higher price point",
-        "complexity": "High"
-      },
-      {
-        "name": "Smart Exclusion Rules & Presets",
-        "monetization": "Power-user PRO — reduces accidental deletion support tickets",
-        "complexity": "Low"
-      }
     ]
   },
   {
@@ -261,63 +269,71 @@
       {
         "task": "CLI wrapper (Node/Python) for Git hooks & CI pipelines",
         "done": false
+      },
+      {
+        "task": "Batch File Conversion",
+        "done": false,
+        "monetization": "Primary PRO unlock — power users hit the single-file limit fast",
+        "complexity": "Medium"
+      },
+      {
+        "task": "Multi-format Export (PlantUML, D2, GraphViz DOT)",
+        "done": false,
+        "monetization": "PRO add-on — widens appeal beyond Mermaid-only teams",
+        "complexity": "Medium"
+      },
+      {
+        "task": "Additional Diagram Types (Class, ER, State, Gantt)",
+        "done": false,
+        "monetization": "Enterprise use cases — unlocks engineering & architecture teams",
+        "complexity": "High"
+      },
+      {
+        "task": "REST API with API Key",
+        "done": false,
+        "monetization": "SaaS subscription by volume — developer audience pays reliably",
+        "complexity": "Medium"
+      },
+      {
+        "task": "GitHub / GitLab Integration",
+        "done": false,
+        "monetization": "Team plan — 'diagrams as code' migration for engineering orgs",
+        "complexity": "High"
+      },
+      {
+        "task": "VS Code Extension",
+        "done": false,
+        "monetization": "Free distribution channel — drives web tool and PRO sign-ups",
+        "complexity": "Medium"
+      },
+      {
+        "task": "Mermaid → DrawIO Reverse Conversion",
+        "done": false,
+        "monetization": "Doubles addressable use case — the other direction of the workflow",
+        "complexity": "High"
+      },
+      {
+        "task": "Conversion History & Cloud Sync",
+        "done": false,
+        "monetization": "Subscription retention feature — users keep coming back",
+        "complexity": "Medium"
+      },
+      {
+        "task": "Shareable Diagram Links",
+        "done": false,
+        "monetization": "Viral growth loop — premium for permanent links",
+        "complexity": "Medium"
+      },
+      {
+        "task": "Confluence / Notion Export",
+        "done": false,
+        "monetization": "Enterprise documentation teams — the biggest DrawIO user segment",
+        "complexity": "High"
       }
     ],
     "timestamp": "2026-05-01",
     "images": [
       "assets/drawio_mockup.png"
-    ],
-    "ai_features": [
-      {
-        "name": "Batch File Conversion",
-        "monetization": "Primary PRO unlock — power users hit the single-file limit fast",
-        "complexity": "Medium"
-      },
-      {
-        "name": "Multi-format Export (PlantUML, D2, GraphViz DOT)",
-        "monetization": "PRO add-on — widens appeal beyond Mermaid-only teams",
-        "complexity": "Medium"
-      },
-      {
-        "name": "Additional Diagram Types (Class, ER, State, Gantt)",
-        "monetization": "Enterprise use cases — unlocks engineering & architecture teams",
-        "complexity": "High"
-      },
-      {
-        "name": "REST API with API Key",
-        "monetization": "SaaS subscription by volume — developer audience pays reliably",
-        "complexity": "Medium"
-      },
-      {
-        "name": "GitHub / GitLab Integration",
-        "monetization": "Team plan — 'diagrams as code' migration for engineering orgs",
-        "complexity": "High"
-      },
-      {
-        "name": "VS Code Extension",
-        "monetization": "Free distribution channel — drives web tool and PRO sign-ups",
-        "complexity": "Medium"
-      },
-      {
-        "name": "Mermaid → DrawIO Reverse Conversion",
-        "monetization": "Doubles addressable use case — the other direction of the workflow",
-        "complexity": "High"
-      },
-      {
-        "name": "Conversion History & Cloud Sync",
-        "monetization": "Subscription retention feature — users keep coming back",
-        "complexity": "Medium"
-      },
-      {
-        "name": "Shareable Diagram Links",
-        "monetization": "Viral growth loop — premium for permanent links",
-        "complexity": "Medium"
-      },
-      {
-        "name": "Confluence / Notion Export",
-        "monetization": "Enterprise documentation teams — the biggest DrawIO user segment",
-        "complexity": "High"
-      }
     ]
   },
   {
@@ -488,77 +504,88 @@
       {
         "task": "Operation history & undo with backed-up originals (PRO)",
         "done": false
-      }
-    ],
-    "timestamp": "2026-05-18",
-    "images": [],
-    "ai_features": [
+      },
       {
-        "name": "GPS Map View",
+        "task": "GPS Map View",
+        "done": false,
         "monetization": "High-impact PRO demo — seeing your home on a map drives instant conversion",
         "complexity": "Medium"
       },
       {
-        "name": "Metadata Editor (write EXIF)",
+        "task": "Metadata Editor (write EXIF)",
+        "done": false,
         "monetization": "Opens photographer & journalist market — cleaner becomes full manager",
         "complexity": "High"
       },
       {
-        "name": "Privacy Audit Dashboard",
+        "task": "Privacy Audit Dashboard",
+        "done": false,
         "monetization": "Compliance dashboard with CSV/JSON export; enterprise/legal/journalist positioning; \"Fix All High Risk\" upsell",
         "complexity": "Medium"
       },
       {
-        "name": "Quick Share with Auto-Strip",
+        "task": "Quick Share with Auto-Strip",
+        "done": false,
         "monetization": "Daily driver — embedded in macOS Share Sheet, sticky retention",
         "complexity": "Medium"
       },
       {
-        "name": "Metadata Search & Filter across Folder",
+        "task": "Metadata Search & Filter across Folder",
+        "done": false,
         "monetization": "Power-user PRO — unique in the metadata tool market",
         "complexity": "Medium"
       },
       {
-        "name": "Duplicate Photo Detection (perceptual hash)",
+        "task": "Duplicate Photo Detection (perceptual hash)",
+        "done": false,
         "monetization": "Natural PRO bundle with FileLister — same audience, higher ARPU",
         "complexity": "High"
       },
       {
-        "name": "Bulk Rename by Metadata Tokens",
+        "task": "Bulk Rename by Metadata Tokens",
+        "done": false,
         "monetization": "Widely requested in photo tool market — photographers will pay",
         "complexity": "Medium"
       },
       {
-        "name": "iCloud Photos Library Integration",
+        "task": "iCloud Photos Library Integration",
+        "done": false,
         "monetization": "Removes biggest friction for iPhone users — differentiating feature",
         "complexity": "High"
       },
       {
-        "name": "Metadata Comparison Across Files",
+        "task": "Metadata Comparison Across Files",
+        "done": false,
         "monetization": "Editorial & team use case — photo editors reviewing batches",
         "complexity": "Medium"
       },
       {
-        "name": "Copyright & Watermark Stamper",
+        "task": "Copyright & Watermark Stamper",
+        "done": false,
         "monetization": "Strip competitor metadata, add your own — photographer community",
         "complexity": "Medium"
       },
       {
-        "name": "Batch Keyword Tagging",
+        "task": "Batch Keyword Tagging",
+        "done": false,
         "monetization": "PRO-only IPTC/XMP keyword writer across entire shoots — natural upsell for photographers who already use the cleaner",
         "complexity": "Low"
       },
       {
-        "name": "Background Watch Folder (MenuBar)",
+        "task": "Background Watch Folder (MenuBar)",
+        "done": false,
         "monetization": "Auto-clean incoming files without opening the app — watch folder as a daemon; differentiates from one-shot competitors",
         "complexity": "Medium"
       },
       {
-        "name": "GDPR Compliance Audit Report",
+        "task": "GDPR Compliance Audit Report",
+        "done": false,
         "monetization": "Exportable signed report proving metadata removal; enterprise compliance teams will pay for documentation; strong legal/HR market",
         "complexity": "Medium"
       }
-    ]
+    ],
+    "timestamp": "2026-05-18",
+    "images": []
   },
   {
     "id": "VC-007",
@@ -636,63 +663,71 @@
       {
         "task": "Metadata export to CSV / JSON before stripping",
         "done": false
+      },
+      {
+        "task": "REST API with API Keys",
+        "done": false,
+        "monetization": "SaaS subscription by volume — developer audience pays reliably",
+        "complexity": "Medium"
+      },
+      {
+        "task": "PDF Metadata Stripping",
+        "done": false,
+        "monetization": "Expands to legal/HR market — much larger than image-only",
+        "complexity": "Medium"
+      },
+      {
+        "task": "Video Metadata Stripping (MP4, MOV)",
+        "done": false,
+        "monetization": "Mobile-shot content growth area — GPS in videos is rampant",
+        "complexity": "Medium"
+      },
+      {
+        "task": "White-Label / Self-Hosted Enterprise License",
+        "done": false,
+        "monetization": "One-time enterprise fee €499–2999 — avoids SaaS pricing objections",
+        "complexity": "Low"
+      },
+      {
+        "task": "GDPR Compliance Audit Report",
+        "done": false,
+        "monetization": "Legal/compliance premium — signed PDF proof of metadata removal",
+        "complexity": "Medium"
+      },
+      {
+        "task": "Direct URL Processing",
+        "done": false,
+        "monetization": "Removes biggest friction — no manual download required",
+        "complexity": "Low"
+      },
+      {
+        "task": "Cloud Storage Integration (Google Drive, Dropbox)",
+        "done": false,
+        "monetization": "Team workflow integration — natural PRO for shared drives",
+        "complexity": "High"
+      },
+      {
+        "task": "Browser Extension",
+        "done": false,
+        "monetization": "Viral distribution — right-click any web image to strip & download",
+        "complexity": "Medium"
+      },
+      {
+        "task": "Webhook / Automation Integration",
+        "done": false,
+        "monetization": "Automation-first teams (agencies, newsrooms) — Zapier/Make compatible",
+        "complexity": "Medium"
+      },
+      {
+        "task": "User Accounts & Usage Dashboard",
+        "done": false,
+        "monetization": "Foundation for all SaaS billing — enables team plans and Stripe",
+        "complexity": "High"
       }
     ],
     "timestamp": "2026-05-19",
     "images": [
       "assets/metastrip_mockup.png"
-    ],
-    "ai_features": [
-      {
-        "name": "REST API with API Keys",
-        "monetization": "SaaS subscription by volume — developer audience pays reliably",
-        "complexity": "Medium"
-      },
-      {
-        "name": "PDF Metadata Stripping",
-        "monetization": "Expands to legal/HR market — much larger than image-only",
-        "complexity": "Medium"
-      },
-      {
-        "name": "Video Metadata Stripping (MP4, MOV)",
-        "monetization": "Mobile-shot content growth area — GPS in videos is rampant",
-        "complexity": "Medium"
-      },
-      {
-        "name": "White-Label / Self-Hosted Enterprise License",
-        "monetization": "One-time enterprise fee €499–2999 — avoids SaaS pricing objections",
-        "complexity": "Low"
-      },
-      {
-        "name": "GDPR Compliance Audit Report",
-        "monetization": "Legal/compliance premium — signed PDF proof of metadata removal",
-        "complexity": "Medium"
-      },
-      {
-        "name": "Direct URL Processing",
-        "monetization": "Removes biggest friction — no manual download required",
-        "complexity": "Low"
-      },
-      {
-        "name": "Cloud Storage Integration (Google Drive, Dropbox)",
-        "monetization": "Team workflow integration — natural PRO for shared drives",
-        "complexity": "High"
-      },
-      {
-        "name": "Browser Extension",
-        "monetization": "Viral distribution — right-click any web image to strip & download",
-        "complexity": "Medium"
-      },
-      {
-        "name": "Webhook / Automation Integration",
-        "monetization": "Automation-first teams (agencies, newsrooms) — Zapier/Make compatible",
-        "complexity": "Medium"
-      },
-      {
-        "name": "User Accounts & Usage Dashboard",
-        "monetization": "Foundation for all SaaS billing — enables team plans and Stripe",
-        "complexity": "High"
-      }
     ]
   },
   {
@@ -868,58 +903,65 @@
       {
         "task": "On-demand News panel: Google News RSS per ticker, 3-month window, user-triggered",
         "done": false
+      },
+      {
+        "task": "AI Entry Point Suggestion (historical pattern analysis)",
+        "done": false,
+        "monetization": "PRO — reduces decision anxiety, high perceived value for active traders",
+        "complexity": "High"
+      },
+      {
+        "task": "Portfolio Correlation Analysis (overexposure warnings)",
+        "done": false,
+        "monetization": "PRO — risk management layer for self-directed investors",
+        "complexity": "Medium"
+      },
+      {
+        "task": "News Sentiment Scoring (auto-classify headlines as bullish / bearish)",
+        "done": false,
+        "monetization": "PRO add-on — surfaces the why behind price moves without manual reading",
+        "complexity": "Medium"
+      },
+      {
+        "task": "Smart Alert Threshold Tuning (based on stock beta / historical volatility)",
+        "done": false,
+        "monetization": "PRO — prevents alert fatigue on high-beta stocks like Tesla",
+        "complexity": "Medium"
+      },
+      {
+        "task": "Multi-Ticker Comparison Chart Overlay",
+        "done": false,
+        "monetization": "Core PRO upsell — essential for relative value and sector comparisons",
+        "complexity": "Low"
+      },
+      {
+        "task": "Broker CSV Import (Degiro, Interactive Brokers) to auto-populate portfolio",
+        "done": false,
+        "monetization": "Removes biggest onboarding friction — drives adoption and retention",
+        "complexity": "Medium"
+      },
+      {
+        "task": "Mobile PWA + Push Notifications",
+        "done": false,
+        "monetization": "Retention — alerts reach you without relying solely on email",
+        "complexity": "Medium"
+      },
+      {
+        "task": "Watchlist Sharing (public read-only link with investment thesis)",
+        "done": false,
+        "monetization": "Viral growth loop — share your conviction publicly",
+        "complexity": "Medium"
+      },
+      {
+        "task": "Analyst Price Target Consensus Overlay on Chart",
+        "done": false,
+        "monetization": "Research-grade PRO feature — shows where professionals expect the stock to go",
+        "complexity": "High"
       }
     ],
     "timestamp": "2026-06-20",
     "images": [
       "assets/stocksentinel_mockup.png"
-    ],
-    "ai_features": [
-      {
-        "name": "AI Entry Point Suggestion (historical pattern analysis)",
-        "monetization": "PRO — reduces decision anxiety, high perceived value for active traders",
-        "complexity": "High"
-      },
-      {
-        "name": "Portfolio Correlation Analysis (overexposure warnings)",
-        "monetization": "PRO — risk management layer for self-directed investors",
-        "complexity": "Medium"
-      },
-      {
-        "name": "News Sentiment Scoring (auto-classify headlines as bullish / bearish)",
-        "monetization": "PRO add-on — surfaces the why behind price moves without manual reading",
-        "complexity": "Medium"
-      },
-      {
-        "name": "Smart Alert Threshold Tuning (based on stock beta / historical volatility)",
-        "monetization": "PRO — prevents alert fatigue on high-beta stocks like Tesla",
-        "complexity": "Medium"
-      },
-      {
-        "name": "Multi-Ticker Comparison Chart Overlay",
-        "monetization": "Core PRO upsell — essential for relative value and sector comparisons",
-        "complexity": "Low"
-      },
-      {
-        "name": "Broker CSV Import (Degiro, Interactive Brokers) to auto-populate portfolio",
-        "monetization": "Removes biggest onboarding friction — drives adoption and retention",
-        "complexity": "Medium"
-      },
-      {
-        "name": "Mobile PWA + Push Notifications",
-        "monetization": "Retention — alerts reach you without relying solely on email",
-        "complexity": "Medium"
-      },
-      {
-        "name": "Watchlist Sharing (public read-only link with investment thesis)",
-        "monetization": "Viral growth loop — share your conviction publicly",
-        "complexity": "Medium"
-      },
-      {
-        "name": "Analyst Price Target Consensus Overlay on Chart",
-        "monetization": "Research-grade PRO feature — shows where professionals expect the stock to go",
-        "complexity": "High"
-      }
     ]
   },
   {
@@ -1042,68 +1084,77 @@
       {
         "task": "Review UI: accept/reject suggestions, export final optimized BOM in universal CSV/Excel format",
         "done": false
+      },
+      {
+        "task": "Live ERP/PLM API Integration (approved + in-stock lookup)",
+        "done": false,
+        "monetization": "Core enterprise upsell — turns the tool into a real sourcing system, not just a checker",
+        "complexity": "High"
+      },
+      {
+        "task": "Cross-Reference & Alternate Part Suggestions",
+        "done": false,
+        "monetization": "PRO add-on — surfaces alternates for parts with no internal match",
+        "complexity": "High"
+      },
+      {
+        "task": "Component Risk & Lifecycle Flags (EOL, obsolescence)",
+        "done": false,
+        "monetization": "PRO — procurement teams pay to avoid last-minute redesigns",
+        "complexity": "Medium"
+      },
+      {
+        "task": "Multi-BOM Batch Processing",
+        "done": false,
+        "monetization": "Team/Enterprise tier — process entire product lines at once",
+        "complexity": "Medium"
+      },
+      {
+        "task": "Intentional Exception Memory (learns which duplicates to leave alone)",
+        "done": false,
+        "monetization": "Retention driver — the tool gets smarter and faster to review on every re-run of the same project",
+        "complexity": "Medium"
+      },
+      {
+        "task": "Historical Savings Backtest Report (PDF/Excel export)",
+        "done": false,
+        "monetization": "Sales enablement feature — proves ROI before a company commits to a license",
+        "complexity": "Low"
+      },
+      {
+        "task": "Design-Variant / DNP-Aware BOM Handling",
+        "done": false,
+        "monetization": "PRO — correctly excludes Do-Not-Populate lines and per-variant BOMs from optimization, a common feature across Altium, OrCAD, KiCad and PADS",
+        "complexity": "Medium"
+      },
+      {
+        "task": "Live Supply-Chain Pricing Overlay (Octopart/distributor feeds)",
+        "done": false,
+        "monetization": "PRO — mirrors ActiveBOM/Live BOM style real-time pricing seen in Altium and OrCAD",
+        "complexity": "High"
+      },
+      {
+        "task": "ERP/PLM Sync Beyond SAP (e.g. Oracle, Dynamics)",
+        "done": false,
+        "monetization": "Enterprise license — widens addressable market beyond SAP shops",
+        "complexity": "High"
+      },
+      {
+        "task": "Approval Workflow (engineering sign-off per merge)",
+        "done": false,
+        "monetization": "Enterprise compliance feature — audit trail for regulated industries",
+        "complexity": "Medium"
+      },
+      {
+        "task": "Component Value Tolerance Rules Editor",
+        "done": false,
+        "monetization": "Power-user PRO — customize what counts as 'equivalent' per company standard",
+        "complexity": "Medium"
       }
     ],
     "timestamp": "2026-07-26",
     "images": [
       "assets/smartbom_mockup.png"
-    ],
-    "ai_features": [
-      {
-        "name": "Live ERP/PLM API Integration (approved + in-stock lookup)",
-        "monetization": "Core enterprise upsell — turns the tool into a real sourcing system, not just a checker",
-        "complexity": "High"
-      },
-      {
-        "name": "Cross-Reference & Alternate Part Suggestions",
-        "monetization": "PRO add-on — surfaces alternates for parts with no internal match",
-        "complexity": "High"
-      },
-      {
-        "name": "Component Risk & Lifecycle Flags (EOL, obsolescence)",
-        "monetization": "PRO — procurement teams pay to avoid last-minute redesigns",
-        "complexity": "Medium"
-      },
-      {
-        "name": "Multi-BOM Batch Processing",
-        "monetization": "Team/Enterprise tier — process entire product lines at once",
-        "complexity": "Medium"
-      },
-      {
-        "name": "Intentional Exception Memory (learns which duplicates to leave alone)",
-        "monetization": "Retention driver — the tool gets smarter and faster to review on every re-run of the same project",
-        "complexity": "Medium"
-      },
-      {
-        "name": "Historical Savings Backtest Report (PDF/Excel export)",
-        "monetization": "Sales enablement feature — proves ROI before a company commits to a license",
-        "complexity": "Low"
-      },
-      {
-        "name": "Design-Variant / DNP-Aware BOM Handling",
-        "monetization": "PRO — correctly excludes Do-Not-Populate lines and per-variant BOMs from optimization, a common feature across Altium, OrCAD, KiCad and PADS",
-        "complexity": "Medium"
-      },
-      {
-        "name": "Live Supply-Chain Pricing Overlay (Octopart/distributor feeds)",
-        "monetization": "PRO — mirrors ActiveBOM/Live BOM style real-time pricing seen in Altium and OrCAD",
-        "complexity": "High"
-      },
-      {
-        "name": "ERP/PLM Sync Beyond SAP (e.g. Oracle, Dynamics)",
-        "monetization": "Enterprise license — widens addressable market beyond SAP shops",
-        "complexity": "High"
-      },
-      {
-        "name": "Approval Workflow (engineering sign-off per merge)",
-        "monetization": "Enterprise compliance feature — audit trail for regulated industries",
-        "complexity": "Medium"
-      },
-      {
-        "name": "Component Value Tolerance Rules Editor",
-        "monetization": "Power-user PRO — customize what counts as 'equivalent' per company standard",
-        "complexity": "Medium"
-      }
     ]
   }
 ]
