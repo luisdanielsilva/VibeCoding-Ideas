@@ -1156,5 +1156,76 @@
     "images": [
       "assets/smartbom_mockup.png"
     ]
+  },
+  {
+    "id": "VC-010",
+    "title": "FileInspector",
+    "status": "Concept",
+    "excerpt": "A cross-platform command-line utility (with an optional GUI) that lists files in a directory tree along with their metadata, exporting to JSON, XML, or CSV.",
+    "full_description": "FileInspector is a lightweight, cross-platform utility that walks a directory tree and produces a structured inventory of every file it finds — name, path, size, timestamps (created/modified/accessed), and any extended metadata the file format exposes (EXIF for photos, ID3 for audio, page count and author for documents, and so on). Unlike most “list files” utilities, which only export to CSV, FileInspector can output the same scan as JSON, XML, or CSV, so the same tool works equally well feeding a spreadsheet, a script, or a downstream system that expects structured data.\n\nIt's loosely inspired by JAM Software's FileList, a long-standing Windows-only command-line tool built for exactly this: generating a directory listing for compliance documentation, inventory audits, and metadata extraction, with filtering by file name, extension, timestamp, directory depth, size, or attributes. FileInspector keeps that same command-line-first design — so it slots into existing scripts, cron jobs, or CI pipelines without any UI — but is written to run identically on macOS, Windows, and Linux, and pairs the CLI with an optional GUI for people who'd rather point-and-click a scan than remember flags.\n\nThe GUI isn't a separate product bolted onto the CLI as an afterthought — it's a thin, optional front end that builds the exact same command the CLI accepts, then hands it off, so a scan configured visually can always be reproduced by copying the equivalent CLI invocation into a script later. That single-engine design keeps CLI and GUI results guaranteed identical and avoids maintaining two independent scanning implementations.\n\nTypical use cases: producing an inventory of a shared drive or archive for compliance/audit purposes; documenting exactly what's on a backup before or after it runs, to catch missing or unexpectedly-added files; cataloging a media library (photos/audio/video) by its embedded metadata rather than just filenames; feeding a file inventory into another system (a DAM, an asset-tracking spreadsheet, a data-migration script) via whichever of JSON/XML/CSV that system expects; and forensic/audit trails where a timestamped, exhaustive listing of a directory's exact state needs to be preserved outside the filesystem itself.",
+    "features": [
+      "Cross-platform CLI — identical behavior on macOS, Windows, and Linux",
+      "Multi-format output — JSON, XML, and CSV from the same scan",
+      "Rich metadata capture — beyond name/size/dates: EXIF (photos), ID3 (audio), document properties (author, page count), and other format-specific fields",
+      "Filtering — by file name/extension, timestamp range, directory depth, file size, and file attributes",
+      "Optional GUI — builds and runs the same command the CLI accepts, for point-and-click scans",
+      "Scriptable — designed to slot into cron jobs, CI pipelines, and existing automation without a UI",
+      "Diff/compare mode — compare two scans of the same directory to see what changed"
+    ],
+    "advantages": [
+      "Cross-platform, where the tool it's loosely based on (FileList) is Windows-only",
+      "One tool, three output formats — no separate exporters needed per downstream system",
+      "CLI-first design means it automates cleanly; the GUI is additive, not required",
+      "Single scanning engine behind both CLI and GUI keeps results identical and halves the maintenance burden",
+      "Rich metadata capture turns a plain file listing into a genuinely useful catalog (media libraries, document archives)",
+      "Diff/compare mode turns it into a lightweight backup/change-audit tool, not just a one-shot lister"
+    ],
+    "pitfalls": [
+      "Extracting format-specific metadata (EXIF, ID3, document properties) means bundling or depending on multiple parsing libraries — scope creep risk if every format is chased",
+      "Very large directory trees (millions of files) need a streaming/incremental writer, not an in-memory scan, to avoid memory blowup",
+      "Cross-platform file-attribute differences (Windows attributes vs POSIX permissions) need a normalized schema so output isn't OS-specific",
+      "XML output is rarely anyone's first choice today — worth confirming real demand before investing equal effort in all three formats",
+      "GUI must stay strictly a thin wrapper around the CLI, or the two will drift and results will stop matching"
+    ],
+    "stages": [
+      "Core CLI: directory walk + basic metadata (name, path, size, timestamps) + CSV output",
+      "JSON and XML output formats",
+      "Filtering engine (name/extension/timestamp/depth/size/attributes)",
+      "Format-specific metadata extraction (EXIF, ID3, document properties)",
+      "Diff/compare mode between two scans",
+      "GUI front end (thin wrapper generating CLI-equivalent commands)",
+      "Packaging & cross-platform installers/binaries"
+    ],
+    "roadmap": [
+      {
+        "task": "Core CLI: directory walk + basic metadata + CSV output",
+        "done": false
+      },
+      {
+        "task": "JSON and XML output formats",
+        "done": false
+      },
+      {
+        "task": "Filtering engine (name/extension/timestamp/depth/size/attributes)",
+        "done": false
+      },
+      {
+        "task": "Format-specific metadata extraction (EXIF, ID3, document properties)",
+        "done": false
+      },
+      {
+        "task": "Diff/compare mode between two scans",
+        "done": false
+      },
+      {
+        "task": "GUI front end (thin wrapper generating CLI-equivalent commands)",
+        "done": false
+      },
+      {
+        "task": "Packaging & cross-platform installers/binaries",
+        "done": false
+      }
+    ],
+    "timestamp": "2026-08-24"
   }
 ]
