@@ -17,6 +17,6 @@ A minimal, subtle portal to document and roadmap app ideas.
 
 ## 🌐 Automated Deployment
 
-This repository uses **GitHub Actions** to automatically sync changes to the VPS over Tailscale + rsync (see `.github/workflows/deploy.yml`). Every `git push` to `main` deploys to `/var/www/singleuseapps-portal/vibecoding/`, served at `luisdanielsilva.com/vibecoding/`.
+This repository uses **GitHub Actions** to automatically sync changes to the VPS over Tailscale + rsync (see `.github/workflows/deploy.yml`). Every `git push` to `main` deploys to `/var/www/singleuseapps-portal/vibecodingideas/`, served at `luisdanielsilva.com/vibecodingideas/`.
 
 Required repository secrets: `TAILSCALE_AUTHKEY`, `VPS_HOST`, `VPS_PASSWORD`.

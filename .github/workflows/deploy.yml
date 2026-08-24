@@ -27,11 +27,11 @@ jobs:
 
       - name: Prepare Directory
         run: |
-          sshpass -p "${{ secrets.VPS_PASSWORD }}" ssh -o StrictHostKeyChecking=no deploy@${{ secrets.VPS_HOST }} 'echo "${{ secrets.VPS_PASSWORD }}" | sudo -S mkdir -p /var/www/singleuseapps-portal/vibecoding/ && echo "${{ secrets.VPS_PASSWORD }}" | sudo -S chown -R deploy:www-data /var/www/singleuseapps-portal/vibecoding/'
+          sshpass -p "${{ secrets.VPS_PASSWORD }}" ssh -o StrictHostKeyChecking=no deploy@${{ secrets.VPS_HOST }} 'echo "${{ secrets.VPS_PASSWORD }}" | sudo -S mkdir -p /var/www/singleuseapps-portal/vibecodingideas/ && echo "${{ secrets.VPS_PASSWORD }}" | sudo -S chown -R deploy:www-data /var/www/singleuseapps-portal/vibecodingideas/'
 
       - name: Deploy via Rsync
         run: |
-          sshpass -p "${{ secrets.VPS_PASSWORD }}" rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no" --exclude '.git' --exclude '.github' ./ deploy@${{ secrets.VPS_HOST }}:/var/www/singleuseapps-portal/vibecoding/
+          sshpass -p "${{ secrets.VPS_PASSWORD }}" rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no" --exclude '.git' --exclude '.github' ./ deploy@${{ secrets.VPS_HOST }}:/var/www/singleuseapps-portal/vibecodingideas/
 
       - name: Restart Nginx
         run: |
