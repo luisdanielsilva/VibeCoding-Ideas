@@ -204,12 +204,70 @@ h1 {
     margin: 0;
 }
 
+/* Rendered from descriptions/<id>.md by renderMarkdown() in script.js. The
+   pre-line trick this used to rely on is gone: paragraphs, headings and lists
+   are now real elements, so they are styled as such. */
 .modal-body .full-description {
     margin-bottom: 30px;
     font-size: 1.1rem;
     color: #ccc;
-    white-space: pre-line;
 }
+
+.modal-body .full-description > *:first-child {
+    margin-top: 0;
+}
+
+.modal-body .full-description p {
+    margin: 0 0 1em;
+    line-height: 1.65;
+}
+
+/* h4 is what '##' produces — deliberately quieter than the modal's own h3
+   section headings so the description reads as one block, not a rival outline. */
+.modal-body .full-description h4,
+.modal-body .full-description h5 {
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    margin: 1.8em 0 0.6em;
+}
+
+.modal-body .full-description h4 { font-size: 1.05rem; }
+.modal-body .full-description h5 { font-size: 0.95rem; color: #ddd; }
+
+.modal-body .full-description ul,
+.modal-body .full-description ol {
+    margin: 0 0 1em;
+    padding-left: 1.4em;
+}
+
+.modal-body .full-description ul { list-style: disc; }
+.modal-body .full-description ol { list-style: decimal; }
+
+/* The hanging indent the old bullet characters could never give a wrapped line. */
+.modal-body .full-description li {
+    margin-bottom: 0.5em;
+    line-height: 1.6;
+    padding-left: 0.2em;
+}
+
+.modal-body .full-description li::marker { color: var(--accent); }
+
+.modal-body .full-description strong { color: #fff; font-weight: 600; }
+.modal-body .full-description em { color: #ddd; }
+
+.modal-body .full-description code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85em;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--card-border);
+    border-radius: 4px;
+    padding: 0.1em 0.35em;
+}
+
+.modal-body .full-description a { color: var(--accent); }
+
+.description-error { color: #ff3b30; font-style: italic; }
 
 .modal-body .implementation-plan {
     background: rgba(255, 255, 255, 0.01);

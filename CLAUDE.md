@@ -45,7 +45,7 @@ One array of idea objects, rendered as cards by `script.js` (`renderIdeas()`), e
 (`openModal()`). Schema:
 
 ```
-id, title, status, excerpt, full_description,
+id, title, status, excerpt,
 features[], stages[], advantages[], pitfalls[],
 roadmap[{task, done, complexity?, monetization?}],
 timestamp, images[]        # images is optional
@@ -54,10 +54,29 @@ timestamp, images[]        # images is optional
 - `status` is `Concept` | `In Progress` | `Completed` | `Canceled`. It is lowercased and hyphenated into a
   CSS class, so a **new status needs a matching rule in `style.css`**.
 - `roadmap` splits automatically: `done: false` → "Features to implement", `done: true` → "Shipped".
-- `full_description` renders with `white-space: pre-line`, so `\n\n` gives real paragraph breaks.
+- **Descriptions are not in this file.** Each idea's long description is a markdown file at
+  `descriptions/<id>.md` (e.g. `descriptions/VC-011.md`), fetched when the modal opens and rendered by
+  `renderMarkdown()` in `script.js`. To change a description, edit that file — nothing in `ideas.json`
+  needs touching. A new idea needs a matching `.md` file or its modal shows "Description unavailable."
 - Cards render in array order, not sorted by id (VC-005 currently sits after VC-007).
 - Edit it with a small Python script (`json.load` → mutate → `json.dump(indent=2, ensure_ascii=False)` plus
   a trailing newline) to match the file's existing formatting; do not hand-edit large entries.
+
+## The markdown renderer
+
+`renderMarkdown()` in `script.js` is a ~70-line, dependency-free renderer written for exactly what the
+description files use. It is not CommonMark and does not try to be:
+
+- `#` → `<h3>`, `##` → `<h4>`, `###` → `<h5>` — capped so a description never outranks the modal's own
+  `<h3>` section headings. The files use `##`.
+- `-`/`*` bullets and `1.` numbered lists; an unindented continuation line joins the item above it.
+- `**bold**`, `*italic*`, `` `code` ``, `[text](url)` (links get `target="_blank" rel="noopener noreferrer"`).
+- Blank line separates blocks. Everything is HTML-escaped first, so markup in a `.md` file renders as
+  text rather than executing.
+- No tables, images, blockquotes, nested lists or fenced code blocks. Add them to the renderer *and*
+  `style.css` before using them in a description.
+
+Styling lives under `.modal-body .full-description` in `style.css`.
 
 ## Unbuilt work
 

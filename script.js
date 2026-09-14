@@ -23,6 +23,99 @@ document.addEventListener('DOMContentLoaded', () => {
             ideasContainer.innerHTML = '<p class="loading">No ideas found. Start by adding one to ideas.json.</p>';
         });
 
+    // Descriptions live as markdown in descriptions/<id>.md rather than inside
+    // ideas.json, so long prose can be written and diffed as ordinary text. This
+    // renderer covers exactly what those files use — headings, lists, emphasis,
+    // inline code and links — which keeps the page dependency-free.
+    const descriptionCache = {};
+    let openIdeaId = null;
+
+    function escapeHtml(text) {
+        return String(text).replace(/[&<>"']/g, (c) => ({
+            '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+        }[c]));
+    }
+
+    function renderInline(text) {
+        // Code spans are lifted out first so their contents are never re-read as
+        // emphasis: `a**b**` is code, not a bold run.
+        const code = [];
+        let html = escapeHtml(text).replace(/`([^`]+)`/g, (m, body) => {
+            code.push(body);
+            return '\u0000' + (code.length - 1) + '\u0000';
+        });
+        html = html
+            .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+            .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+            .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g,
+                '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+        return html.replace(/\u0000(\d+)\u0000/g, (m, i) => '<code>' + code[i] + '</code>');
+    }
+
+    function renderMarkdown(src) {
+        const lines = String(src).replace(/\r\n?/g, '\n').split('\n');
+        const out = [];
+        let paragraph = [];
+        let list = null;
+
+        const flushParagraph = () => {
+            if (!paragraph.length) return;
+            out.push('<p>' + renderInline(paragraph.join(' ')) + '</p>');
+            paragraph = [];
+        };
+        const flushList = () => {
+            if (!list) return;
+            out.push('<' + list.tag + '>'
+                + list.items.map(item => '<li>' + renderInline(item) + '</li>').join('')
+                + '</' + list.tag + '>');
+            list = null;
+        };
+        const flush = () => { flushParagraph(); flushList(); };
+
+        lines.forEach(raw => {
+            const line = raw.trim();
+            if (!line) { flush(); return; }
+
+            const heading = line.match(/^(#{1,4})\s+(.*)$/);
+            if (heading) {
+                flush();
+                // '#' lands on h3 so a description never outranks the modal's own
+                // section headings; '##' — what the files actually use — gives h4.
+                const level = Math.min(heading[1].length + 2, 6);
+                out.push('<h' + level + '>' + renderInline(heading[2]) + '</h' + level + '>');
+                return;
+            }
+
+            const bullet = line.match(/^[-*]\s+(.*)$/);
+            const numbered = line.match(/^\d+\.\s+(.*)$/);
+            if (bullet || numbered) {
+                flushParagraph();
+                const tag = bullet ? 'ul' : 'ol';
+                if (!list || list.tag !== tag) { flushList(); list = { tag: tag, items: [] }; }
+                list.items.push((bullet || numbered)[1]);
+                return;
+            }
+
+            // An unmarked line continues whatever block is already open, so a wrapped
+            // bullet or a soft-wrapped paragraph stays one block.
+            if (list) { list.items[list.items.length - 1] += ' ' + line; return; }
+            paragraph.push(line);
+        });
+
+        flush();
+        return out.join('');
+    }
+
+    function loadDescription(id) {
+        if (descriptionCache[id]) return Promise.resolve(descriptionCache[id]);
+        return fetch('descriptions/' + encodeURIComponent(id) + '.md')
+            .then(response => {
+                if (!response.ok) throw new Error('HTTP ' + response.status);
+                return response.text();
+            })
+            .then(markdown => { descriptionCache[id] = markdown; return markdown; });
+    }
+
     function renderIdeas(ideas) {
         ideasContainer.innerHTML = '';
         ideas.forEach((idea, index) => {
@@ -57,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             <div class="modal-section">
                 <h3>Description</h3>
-                <p class="full-description">${idea.full_description}</p>
+                <div class="full-description" data-description>Loading description\u2026</div>
             </div>
 
             ${idea.images && idea.images.length > 0 ? `
@@ -142,6 +235,21 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
         modal.style.display = 'block';
         document.body.style.overflow = 'hidden';
+
+        // The fetch is async, so a fast second click must not let the first
+        // description land in the modal that replaced it.
+        openIdeaId = idea.id;
+        const slot = modalBody.querySelector('[data-description]');
+        loadDescription(idea.id)
+            .then(markdown => {
+                if (openIdeaId !== idea.id || !slot.isConnected) return;
+                slot.innerHTML = renderMarkdown(markdown);
+            })
+            .catch(error => {
+                console.error('Error loading description for ' + idea.id + ':', error);
+                if (openIdeaId !== idea.id || !slot.isConnected) return;
+                slot.innerHTML = '<p class="description-error">Description unavailable.</p>';
+            });
 
         // Add event listeners to gallery images for lightbox
         const images = modalBody.querySelectorAll('.gallery-image, .idea-thumbnail');
