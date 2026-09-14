@@ -57,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const out = [];
         let paragraph = [];
         let list = null;
+        let quote = null;
 
         const flushParagraph = () => {
             if (!paragraph.length) return;
@@ -70,7 +71,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 + '</' + list.tag + '>');
             list = null;
         };
-        const flush = () => { flushParagraph(); flushList(); };
+        const flushQuote = () => {
+            if (!quote) return;
+            out.push('<blockquote>' + renderInline(quote.join(' ')) + '</blockquote>');
+            quote = null;
+        };
+        const flush = () => { flushParagraph(); flushList(); flushQuote(); };
 
         lines.forEach(raw => {
             const line = raw.trim();
@@ -85,6 +91,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 out.push('<h' + level + '>' + renderInline(heading[2]) + '</h' + level + '>');
                 return;
             }
+
+            if (/^(-{3,}|\*{3,})$/.test(line)) { flush(); out.push('<hr>'); return; }
+
+            const quoted = line.match(/^>\s?(.*)$/);
+            if (quoted) {
+                flushParagraph();
+                flushList();
+                if (!quote) quote = [];
+                quote.push(quoted[1]);
+                return;
+            }
+            flushQuote();
 
             const bullet = line.match(/^[-*]\s+(.*)$/);
             const numbered = line.match(/^\d+\.\s+(.*)$/);

@@ -71,10 +71,13 @@ description files use. It is not CommonMark and does not try to be:
   `<h3>` section headings. The files use `##`.
 - `-`/`*` bullets and `1.` numbered lists; an unindented continuation line joins the item above it.
 - `**bold**`, `*italic*`, `` `code` ``, `[text](url)` (links get `target="_blank" rel="noopener noreferrer"`).
+- `> ` blockquote — styled as an accent-bordered callout, for a lead line or a standout claim.
+- `---` on its own line — a horizontal divider between major parts.
 - Blank line separates blocks. Everything is HTML-escaped first, so markup in a `.md` file renders as
   text rather than executing.
-- No tables, images, blockquotes, nested lists or fenced code blocks. Add them to the renderer *and*
-  `style.css` before using them in a description.
+- Emoji are just text and work anywhere; `descriptions/VC-011.md` uses them as section markers.
+- No tables, images, nested lists or fenced code blocks. Add them to the renderer *and* `style.css`
+  before using them in a description.
 
 Styling lives under `.modal-body .full-description` in `style.css`.
 

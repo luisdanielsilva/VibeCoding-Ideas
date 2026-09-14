@@ -267,6 +267,27 @@ h1 {
 
 .modal-body .full-description a { color: var(--accent); }
 
+/* '>' callout — used for the lead line and the standout claims, so the eye has
+   somewhere to land in a long description. */
+.modal-body .full-description blockquote {
+    margin: 0 0 1.4em;
+    padding: 14px 18px;
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    background: var(--accent-glow);
+    color: #e8e8e8;
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+/* '---' divider between major parts of a description. */
+.modal-body .full-description hr {
+    border: 0;
+    height: 1px;
+    background: var(--card-border);
+    margin: 2.2em 0;
+}
+
 .description-error { color: #ff3b30; font-style: italic; }
 
 .modal-body .implementation-plan {
