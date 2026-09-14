@@ -733,55 +733,85 @@
   {
     "id": "VC-005",
     "title": "PropInsight",
-    "status": "Canceled",
-    "excerpt": "Automated real-estate market analyzer and historical price tracker.",
-    "full_description": "PropInsight is an intelligent real-estate data aggregator designed to provide a comprehensive overview of local property markets. By autonomously scanning major real-estate portals, it captures and cross-references critical data points including historical pricing, geographic distribution, and visual assets.",
+    "status": "Concept",
+    "excerpt": "A configurable web scraper that extracts real-estate listing prices and attributes from property portals into clean, structured data (CSV, JSON, or database).",
+    "full_description": "PropInsight is a configurable web scraper whose single job is to collect real-estate listing prices and turn them into clean, structured data. It walks the result pages of a property portal, opens each listing, extracts a consistent set of fields — asking price, price per square metre, location, property type, area, number of rooms, condition, listing date and the listing URL — and writes them out as CSV, JSON, or straight into a database table. What it deliberately does not do is decide what the numbers mean: it is the data-collection layer, not a valuation product.\n\nEach supported portal is described by a declarative site profile — a small config file that maps the portal's page structure to PropInsight's common schema, listing the search-results selector, the pagination rule, and a selector (or regex) per output field. Adding a new portal, or repairing one after a redesign, means editing that profile rather than writing new code, which matters because listing sites change their markup often and without warning. Simple, server-rendered sites are fetched over plain HTTP; sites that build their listings in JavaScript fall back to a headless browser automatically.\n\nScrapes are meant to be repeated, not run once. PropInsight stores every run as a timestamped snapshot rather than overwriting the previous result, so the history falls out of the data for free: a listing whose price appears three times at three different values has been reduced twice, and a listing that stops appearing has either sold or been withdrawn. Runs are idempotent and resumable — an interrupted scrape picks up where it stopped instead of starting the crawl again — and each row keeps the URL and fetch timestamp it came from so any figure can be traced back to its source page.\n\nThe output is intentionally boring and portable. A CSV drops into a spreadsheet, the JSON feeds a script or a notebook, and the SQLite/Postgres writer gives a queryable price history without any extra infrastructure. Typical uses: tracking asking prices in a specific neighbourhood over months before buying; building a personal dataset of comparable sales to sanity-check an agent's valuation; watching a fixed set of listings for price drops; or feeding a spreadsheet model or BI tool that expects tabular input.\n\nNetwork egress is pluggable. Out of the box requests leave from the machine running the scrape, but PropInsight can also route them through a proxy pool — a handful of static proxies, a datacenter provider, or a commercial residential proxy service (Bright Data, Oxylabs, Smartproxy and similar all expose the same rotating HTTP/SOCKS endpoint, so they drop in as a config value rather than a code change). Residential exit nodes matter for two practical reasons: large portals routinely block whole datacenter IP ranges outright regardless of how slowly you crawl, and many listing sites serve different prices, currencies or inventory depending on the visitor's country, so scraping a foreign market accurately means exiting from it. The proxy layer supports per-request or per-session rotation, sticky sessions where a portal ties results to a session cookie, geo-targeting by country or city, and automatic retry through a different exit node when one gets blocked or times out.\n\nIt is built to scrape politely and stay on the right side of the sites it reads: it honours robots.txt, rate-limits itself with configurable delays and concurrency caps, identifies itself with a real user agent, and caches pages so that re-running a scrape during development does not mean re-hitting the server. The intended scope is personal research and small-scale market analysis — not bulk republication of someone else's listing database. Proxies are a routing tool, not a licence to hammer a site: rate limits, delays and concurrency caps apply per-target regardless of how many exit nodes are in the pool, so adding proxies never increases the load an individual portal sees.",
     "features": [
-      "Automated Price Tracking",
-      "Historical Data Archiving",
-      "Spatial Market Distribution Map",
-      "Price Drop Alerts",
-      "Neighborhood Comparative Analytics",
-      "Photo/Asset Archiving"
+      "Declarative per-portal site profiles (no code to add a new site)",
+      "Common normalized schema across every source",
+      "Automatic headless-browser fallback for JavaScript-rendered listings",
+      "Timestamped snapshots — price history falls out of repeated runs",
+      "Export to CSV, JSON, SQLite or Postgres",
+      "Optional proxy pool, including residential proxy services (rotation, sticky sessions, geo-targeting)",
+      "Resumable, idempotent crawls with local page caching",
+      "Polite by default: robots.txt, rate limits, configurable concurrency",
+      "Scheduled runs via cron or CI, with a diff summary per run",
+      "On-demand mode: fetch a single listing, or the comparables around it, as a live query rather than a batch crawl"
     ],
     "stages": [
-      "Scraping Engine Development (Playwright)",
-      "Data Normalization & PostGIS Setup",
-      "Historical Tracking Logic",
-      "Web UI Dashboard",
-      "Automated Reporting System"
+      "Define the common listing schema and output writers (CSV/JSON)",
+      "HTTP fetcher + HTML extraction driven by a site-profile config",
+      "Headless-browser fallback (Playwright) for dynamic portals",
+      "Snapshot storage and run-over-run price diffing",
+      "Pluggable proxy layer with rotation, geo-targeting and per-node failover",
+      "Scheduling, resume/caching and extraction-failure alerting",
+      "Optional CLI dashboard summarizing the latest run",
+      "On-demand query mode serving single listings and comparable sets to downstream tools"
     ],
     "advantages": [
-      "Data-driven investment decisions",
-      "Identification of undervalued areas",
-      "Tracking of actual market velocity",
-      "Automated discovery of motivated sellers"
+      "One tool and one schema across portals that all publish differently",
+      "Site changes are a config edit, not a rewrite",
+      "Builds a private price history no portal exposes publicly",
+      "Portable output that drops straight into a spreadsheet or a script",
+      "Narrow, well-defined scope — genuinely finishable"
     ],
     "pitfalls": [
-      "Anti-scraping measures on major portals",
-      "Data quality/normalization challenges",
-      "High storage requirements for photos",
-      "Legal/Terms of Service compliance"
+      "Anti-scraping measures: rate limiting, CAPTCHAs, IP blocking",
+      "Frequent portal redesigns silently break extraction selectors",
+      "Residential proxy services are a recurring per-GB cost and vary widely in quality and sourcing ethics",
+      "Terms-of-service and data-reuse restrictions vary per site",
+      "Dirty source data — missing areas, inconsistent units, duplicate listings",
+      "Same property relisted by several agencies inflates the counts"
     ],
     "roadmap": [
       {
-        "task": "Headless scraper (Playwright) for property listings",
+        "task": "Common listing schema + CSV/JSON writers",
         "done": false
       },
       {
-        "task": "PostGIS spatial DB setup for neighborhood grouping",
+        "task": "HTTP fetcher and config-driven field extraction",
         "done": false
       },
       {
-        "task": "Price-drop tracking engine + push notifications",
+        "task": "Site profile format + first portal profile",
         "done": false
       },
       {
-        "task": "Web UI dashboard for market analysis",
+        "task": "Playwright fallback for JS-rendered listing pages",
         "done": false
       },
       {
-        "task": "Automated reporting system",
+        "task": "Snapshot storage (SQLite) with run-over-run price diffs",
+        "done": false
+      },
+      {
+        "task": "Politeness layer: robots.txt, delays, concurrency caps, cache",
+        "done": false
+      },
+      {
+        "task": "Proxy pool support: residential/rotating endpoints, sticky sessions, geo-targeting, failover",
+        "done": false
+      },
+      {
+        "task": "Scheduled runs + alert when a profile stops extracting",
+        "done": false
+      },
+      {
+        "task": "Deduplication of the same property across agencies",
+        "done": false
+      },
+      {
+        "task": "On-demand single-listing and comparable-set queries for DealScope (VC-011)",
         "done": false
       }
     ],
@@ -1227,5 +1257,221 @@
       }
     ],
     "timestamp": "2026-08-24"
+  },
+  {
+    "id": "VC-011",
+    "title": "DealScope",
+    "status": "Concept",
+    "excerpt": "A free service: point it at a property listing and say \"analyse this deal\" — it fetches the property and its comparables, models it as a short-term rental, long-term rental, renovate-and-resell flip or contractual-position assignment, and returns a personalizable PDF report, emailable to whoever needs to see it.",
+    "full_description": "DealScope answers a single question that every property buyer asks and almost nobody answers with numbers: given this specific apartment at this specific price, which way of using it actually makes the most money — and how badly does that answer change if the assumptions are wrong? It takes one property, runs it through four different exit strategies side by side, and produces a complete written report on the deal rather than a bare percentage.\n\nThe four strategies it models are short-term rental, long-term rental, buy-renovate-resell, and the sale of a contractual position. Short-term rental (Airbnb and equivalents) is driven by nightly rate, seasonal occupancy curves, platform commission, cleaning and linen, utilities, furnishing capex and any licensing the local regime requires. Long-term rental is the quieter model: monthly rent, a vacancy allowance, tenant-default risk, property tax, condo fees, insurance and a maintenance reserve. Buy-renovate-resell is a timeline rather than a yield — purchase, works priced per square metre by scope, a contingency buffer, the holding costs that accrue while the works run long, then selling costs and capital-gains tax. The fourth is the one most tools ignore entirely: buying off-plan and assigning the contractual position before completion, where the return is measured against the deposits actually paid in rather than the full price of the apartment, and where the developer's consent fee, the transfer-tax saving that motivates the incoming buyer, and the completion date are the variables that decide everything.\n\nUnderneath the four sits one shared engine, which is what makes the comparison honest. Acquisition costs, transfer tax, stamp duty, notary and registration fees, mortgage terms (LTV, rate, term, and a real amortization schedule rather than a flat interest assumption), the investor's own tax profile and the holding horizon are all entered once and applied identically across every scenario. Each strategy is then reported on the same metrics — net yield, cash-on-cash return, IRR, NPV, payback period, equity multiple, and the break-even point expressed in the terms that matter for that strategy (the occupancy rate, monthly rent, or resale price at which the deal stops making money).\n\nBecause no single set of inputs is ever right, every scenario runs as a range instead of a point estimate. Pessimistic, base and optimistic cases run side by side, a tornado chart ranks which assumptions the outcome is genuinely sensitive to, and an optional Monte Carlo pass over the uncertain drivers reports the probability that the deal clears the investor's target return rather than a single confident-looking number. In practice this is the part that changes decisions: it is common for a deal to look best as a short-term rental in the base case and worst in the downside, purely because the model is levered to occupancy.\n\nThe intended way to use it is one instruction: point it at a listing and say analyse this deal. From a single URL the tool fetches the property's own details — price, area, typology, location, condition, floor, year of construction, energy rating — and then, without being asked, goes back out and fetches the deal's neighbours: everything currently listed nearby that a buyer would weigh against it. That second fetch is the whole point. A property's numbers mean nothing in isolation; they only become a judgement when set against what else the same money buys on the same streets.\n\nThe comparable set is assembled by rule rather than by eye — same locality or a radius around the coordinates, same typology, area within a tolerance band, comparable condition, listed recently enough to still reflect the market — and then reported as a distribution rather than an average: median price per square metre, the spread around it, and the percentile the subject property occupies within its own comp set. Where a snapshot history exists, it adds what a one-off scrape cannot see — which comparables have cut their asking price and by how much, how long the current stock has been sitting, and how quickly listings disappear, which is the closest observable proxy for real absorption in that micro-market.\n\nThis is also what turns the financial model from an exercise in guessing into something grounded. Instead of seeded defaults, the comparable set supplies the assumptions directly: achieved rent per square metre from local long-term listings, nightly rates and seasonal occupancy from short-term inventory in the same area, resale values per square metre from the sales comps for the after-repair figure a flip depends on. Every derived assumption stays visible and editable, with the sample it came from attached, so a user who knows the street better than the data can override a number and see the verdict move.\n\nThe conclusion the report builds to is therefore a genuine one rather than a yield calculation. It states where the asking price sits against the comp-derived fair band and how much negotiating headroom that implies, ranks the four strategies on returns computed from local evidence, and answers whether the deal is worth doing — with the conditions attached, because the truthful answer is usually conditional: worth it as a long-term rental at the asking price, worth it as a short-term rental only above a given occupancy, not worth it as a flip unless the renovation lands under a stated budget. Where the comparable set is too thin or too scattered to support a conclusion, it says so instead of inventing confidence.\n\nNothing about that flow is mandatory. Everything can be entered by hand for a property that was never listed publicly, market assumptions come pre-seeded per location as editable defaults when no usable comparables exist, and the listing fetch reuses the extraction schema VC-005 PropInsight is built around — so a first pass takes a price and a postcode, a serious pass takes fifteen minutes of overriding defaults with real quotes, and a scraped dataset can be pushed through the same pipeline in bulk to rank a whole market instead of one apartment.\n\nThe output is a proper report, not a dashboard that disappears when the tab closes: a PDF containing the assumption set in full, a strategy comparison table, per-scenario cash-flow waterfalls, a cumulative cash position chart over the holding period, the mortgage amortization table, sensitivity tornadoes and break-even charts, and a plain-language summary of which strategy wins and under what conditions it stops winning. The report downloads directly or is emailed on completion, which matters for the real use case — these get forwarded to a spouse, a business partner, an accountant or a lender, and a document with its assumptions printed on the first page is something another person can actually argue with.\n\nIt is meant to be free, and free without an asterisk: no paywalled tier, no report that renders the interesting half blurred, no account required to run an analysis and read the result. A donation button sits on the finished report and nowhere else — visible at the moment the tool has actually been useful to someone, rather than in front of the thing they came for. Donations fund running costs and nothing about them unlocks a feature, because the moment a donation buys something the tool stops being free and starts being a subscription with extra steps. An optional account exists only so that returning users can find their past reports; it is never a condition of using the thing.\n\nTwo audiences want this, and they sit on opposite sides of the same table. An estate agent uses it as an advisory tool: running the numbers on a flat before a viewing, then handing the client a report that explains what the property actually yields under each strategy — which is a materially better pitch than forwarding listing photos, and is most of what separates an agent who advises from one who merely lists. A buyer uses it as negotiating armour: a report stating that the asking price sits in the 85th percentile of its own comparable set, that four similar flats nearby have already cut their price, and that the numbers only work below a certain figure, is a far harder thing to wave away across a table than an opinion that the price seems high. The negotiation-headroom figure the verdict already produces is precisely the artifact a buyer puts in front of a broker to justify an offer under asking.\n\nServing both sides only works if the tool refuses to take one. The report says the same thing about a property regardless of who ran it — there is no agent mode that softens the comparables or a buyer mode that sharpens them — because the instant a report's conclusion depends on who paid for it, it is worth nothing to either side, and the buyer's trust is the asset the agent is borrowing when they attach their logo to it. The practical consequence is that an agent will only forward reports on properties whose numbers genuinely stand up, which is the correct outcome. It also constrains the personalization: a sender can choose which sections to include, but an omitted section is named as omitted, and the shareable link always resolves to the complete analysis, so the format cannot be used to quietly delete the unflattering half.\n\nReports are personalizable, because most of them are not read by the person who ran them. Someone analysing an apartment is nearly always about to forward the result to a spouse, a business partner, an accountant, a mortgage broker or a client, so the report carries the sender's name and optionally their logo, an editable cover note in their own words, a choice of which sections to include or leave out, and a currency and language setting. The finished thing can be downloaded as a PDF or emailed straight to the recipient with a shareable link to the live version, so an estate agent can send a prospective buyer a genuine numbers-first analysis of the flat they just viewed.\n\nLetting an anonymous visitor send a branded PDF to any address they like is, viewed unkindly, a well-designed spam cannon, so that path needs guarding from the first line of code: the sender's own address is verified before anything can be sent from it, recipients are capped per report and per sender per day, the free-text cover note is length-limited and scanned, every outbound mail carries a clear statement of who triggered it and a one-click way for the recipient to block further mail, and sending runs on its own subdomain with its own reputation so that a burst of abuse cannot take the rest of the service's mail down with it.\n\nEvery analysis is stored: the inputs as submitted, the comparable set as it looked at that moment, the derived assumptions, the computed results and the verdict, keyed by a report id. The immediate reason is user-facing — a stored report has a durable link, can be reopened months later, and can be re-run against fresh comparables to show how the same deal has moved. The longer-term reason is that this accumulates into something no individual user could assemble: a record of the deals real people are actually evaluating, which locations and price brackets draw the most attention, and which strategy wins how often under honest local assumptions.\n\nThat database needs a way to look at it, so an internal tool ships alongside the service rather than being improvised later against raw SQL: browse and search stored analyses, filter by location, price band, strategy or date, open any individual report exactly as its user saw it, and read the aggregates on top — volume over time, the locations and typologies being analysed most, the distribution of verdicts, donation conversion, and the operational numbers that matter for a free service, namely which site profiles have started failing extraction and what the scraping and email costs are running at. It is also the abuse console: rate-limit violations, suspicious sending patterns and blocked recipients surface here.\n\nStoring all of that carries obligations that are easy to postpone and expensive to retrofit. The records contain personal data — email addresses of senders and recipients, specific property addresses, and what amounts to a stranger's private financial planning — so the service states plainly what it keeps and for how long, applies a retention window rather than hoarding indefinitely, separates the identifying fields from the deal data so the market-level dataset can be analysed and published in aggregate without exposing anyone, and offers deletion on request as a working feature rather than a paragraph in a policy. Free does not mean the user is the product.\n\nTax and regulatory rules live in per-jurisdiction configuration files rather than being hardcoded, because transfer-tax bands, capital-gains treatment, rental-income taxation and short-term-let licensing differ by country and change with every budget. The tool is explicitly a modelling aid and not financial or tax advice: it shows its work, prints every assumption it used, and is designed so that a professional reviewing the report can see exactly which number to challenge.",
+    "features": [
+      "One-instruction flow: give it a listing URL, get back a complete analysed deal",
+      "Automatic comparable-listing search — the deal is judged against what else the same money buys nearby",
+      "Comp statistics as a distribution: median price/m², spread, and the subject's percentile rank",
+      "Market assumptions derived from the comp set rather than guessed, each shown with its sample and editable",
+      "Price-drop and days-on-market signals from snapshot history as an absorption proxy",
+      "Four strategies modelled side by side: short-term rental, long-term rental, buy-renovate-resell, contractual-position assignment",
+      "One shared engine for acquisition costs, taxes, mortgage amortization and holding horizon, so scenarios are actually comparable",
+      "Full metric set per strategy: net yield, cash-on-cash, IRR, NPV, payback, equity multiple, break-even point",
+      "Pessimistic / base / optimistic ranges with a sensitivity tornado ranking the assumptions that matter",
+      "Optional Monte Carlo pass reporting the probability of clearing a target return",
+      "Auto-fill from a listing URL, or full manual entry",
+      "Editable market defaults per location (nightly rates, occupancy, rent per m², renovation cost per m²)",
+      "PDF report with charts, cash-flow waterfalls, amortization tables and a plain-language verdict",
+      "Delivery by direct download or email on completion",
+      "Per-jurisdiction tax and licensing rules kept in configuration, not in code",
+      "Conditional verdict: whether the deal is worth it, under which strategy, and at what threshold it stops being worth it",
+      "Free with no paywalled tier or gated sections — a donation button on the finished report, unlocking nothing",
+      "Personalizable reports: sender name and logo, editable cover note, section selection, currency and language",
+      "Deliver as a PDF download, an emailed report to a third party, or a shareable link to the live version",
+      "Verified senders, recipient caps and one-click recipient blocking on all outbound mail",
+      "Every analysis stored and re-openable by link, re-runnable against fresh comparables",
+      "Internal admin tool to browse, search and filter stored analyses and read aggregate market and cost metrics",
+      "Optional account purely for finding past reports, never required to run one",
+      "Same verdict regardless of who runs it — no agent mode or buyer mode",
+      "Omitted report sections are named as omitted, and the shareable link always resolves to the full analysis",
+      "Negotiation-ready output: percentile rank against comparables, local price-cut evidence, and the price at which the deal stops working"
+    ],
+    "stages": [
+      "Core financial engine: cash-flow model, mortgage amortization, IRR/NPV/payback",
+      "The four strategy models on top of the shared engine",
+      "Input layer: manual entry plus listing-URL auto-fill and seeded market defaults",
+      "Comparable-set retrieval and scoring, with the statistics that describe the local market",
+      "Derivation of model assumptions from comps, with per-assumption provenance and override",
+      "Scenario ranges, sensitivity analysis and the Monte Carlo pass",
+      "Chart generation and PDF report composition",
+      "Email delivery and saved/shareable report history",
+      "Per-jurisdiction tax configuration packs",
+      "Report persistence layer with durable per-report links",
+      "Report personalization and branding options",
+      "Email delivery with sender verification, rate limits and abuse controls",
+      "Internal admin and analytics tool over the stored analyses",
+      "Donation integration, privacy policy, retention and deletion tooling"
+    ],
+    "advantages": [
+      "One instruction replaces an afternoon of manual comparison across listing tabs and a spreadsheet",
+      "Assumptions are evidenced by local comparables instead of invented, which is what makes the verdict credible",
+      "Answers the comparison question directly — most calculators model one strategy in isolation",
+      "Covers contractual-position assignment, which almost no existing tool handles",
+      "Ranges and sensitivity make the risk visible instead of hiding it behind one number",
+      "A PDF with its assumptions printed is something a partner, accountant or lender can review",
+      "Pairs naturally with a scraper: evaluate a whole scraped market, not one apartment at a time",
+      "Every input has a defensible default, so a rough answer takes a price and a postcode",
+      "Free and account-free removes every reason not to try it, which is how a niche tool gets its first users",
+      "Personalized, forwardable reports turn each user into a distribution channel — agents send them to clients",
+      "Stored analyses compound into a dataset of what people are really evaluating, which no user could assemble alone",
+      "Donations keep it independent, with no obligation to degrade the free path to sell an upgrade",
+      "Two natural audiences on opposite sides of the table: agents advising clients, buyers negotiating with brokers",
+      "Gives an agent a genuine advisory artifact instead of listing photos, and a buyer evidence instead of an opinion"
+    ],
+    "pitfalls": [
+      "Garbage in, confident garbage out — a polished PDF lends false authority to bad assumptions",
+      "Comparables are asking prices, not transaction prices — they run systematically optimistic and the report must say so",
+      "Thin or heterogeneous comp sets in small markets can't support a verdict; the tool has to decline rather than guess",
+      "Comparability is a judgement call — renovation state, floor, view, elevator and noise rarely survive into structured fields",
+      "Tax rules are jurisdiction-specific, change often, and are the easiest thing to get quietly wrong",
+      "Short-term-rental licensing regimes are tightening in many cities and can invalidate a strategy outright",
+      "Reliable local market data (real occupancy, achieved rents, renovation costs) is hard to source",
+      "Risk of being read as financial advice — needs clear framing and visible assumptions",
+      "Renovation cost estimation is genuinely difficult and is where flip models break down",
+      "PDF generation with charts is fiddly, and deliverability for emailed reports needs real setup",
+      "A free service with real marginal costs — scraping bandwidth, residential proxies, PDF rendering, email — funded by donations that rarely cover them",
+      "Anonymous third-party email sending is a spam vector and a fast route to a blacklisted domain if unguarded",
+      "Abuse and bot traffic are expensive here in a way they are not for a static site; rate limiting is a launch requirement, not a later refinement",
+      "Storing addresses, emails and personal financial assumptions brings GDPR duties — consent, retention, deletion, breach exposure",
+      "Branded reports sent by agents invite liability questions about whose analysis the recipient is relying on",
+      "Pressure to add an agent-friendly mode that flatters a listing, which would destroy the credibility both audiences depend on"
+    ],
+    "roadmap": [
+      {
+        "task": "Cash-flow engine with mortgage amortization and IRR/NPV/payback metrics",
+        "done": false
+      },
+      {
+        "task": "Long-term rental model (the simplest strategy) end to end",
+        "done": false
+      },
+      {
+        "task": "Short-term rental model with seasonal occupancy curves",
+        "done": false
+      },
+      {
+        "task": "Buy-renovate-resell model with timeline, contingency and holding costs",
+        "done": false
+      },
+      {
+        "task": "Contractual-position assignment model (deposits paid in, consent fee, transfer-tax saving)",
+        "done": false
+      },
+      {
+        "task": "Side-by-side strategy comparison view",
+        "done": false
+      },
+      {
+        "task": "Pessimistic/base/optimistic ranges + sensitivity tornado",
+        "done": false
+      },
+      {
+        "task": "Chart generation and PDF report composition",
+        "done": false
+      },
+      {
+        "task": "Single-listing fetch on demand, sharing the PropInsight extraction schema",
+        "done": false
+      },
+      {
+        "task": "Comparable-set retrieval: radius/typology/area/condition matching with a comparability score",
+        "done": false
+      },
+      {
+        "task": "Comp statistics: median price/m², spread, subject percentile rank, days-on-market",
+        "done": false
+      },
+      {
+        "task": "Derive model assumptions from comps with visible provenance and one-click override",
+        "done": false
+      },
+      {
+        "task": "Price-drop and delisting-velocity signals from snapshot history",
+        "done": false
+      },
+      {
+        "task": "Verdict engine: fair-value band, negotiation headroom, conditional worth-it conclusion",
+        "done": false
+      },
+      {
+        "task": "Confidence gating — decline a verdict when the comp set is too thin",
+        "done": false
+      },
+      {
+        "task": "Report persistence: store inputs, comps, assumptions and results with a durable link",
+        "done": false
+      },
+      {
+        "task": "Report personalization: sender name/logo, cover note, section selection, currency and language",
+        "done": false
+      },
+      {
+        "task": "Personalization guardrails: name omitted sections, shareable link always shows the full analysis",
+        "done": false
+      },
+      {
+        "task": "Email delivery with sender verification, recipient caps and one-click recipient blocking",
+        "done": false
+      },
+      {
+        "task": "Dedicated sending subdomain with its own mail reputation",
+        "done": false
+      },
+      {
+        "task": "Rate limiting and bot protection on the analysis endpoint",
+        "done": false
+      },
+      {
+        "task": "Donation button on the finished report (unlocking nothing)",
+        "done": false
+      },
+      {
+        "task": "Admin tool: browse, search and filter stored analyses; open any report as its user saw it",
+        "done": false
+      },
+      {
+        "task": "Admin aggregates: volume, locations, verdict distribution, donation conversion, scraping/email costs",
+        "done": false
+      },
+      {
+        "task": "Abuse console: rate-limit violations, sending patterns, blocked recipients",
+        "done": false
+      },
+      {
+        "task": "Privacy: retention window, identity/deal-data separation, working deletion on request",
+        "done": false
+      },
+      {
+        "task": "Optional accounts for retrieving past reports",
+        "done": false
+      },
+      {
+        "task": "Re-run a stored report against fresh comparables to show how the deal moved",
+        "done": false
+      },
+      {
+        "task": "Seeded market defaults per location",
+        "done": false
+      },
+      {
+        "task": "Monte Carlo pass over uncertain drivers",
+        "done": false
+      },
+      {
+        "task": "Per-jurisdiction tax configuration packs",
+        "done": false
+      },
+      {
+        "task": "Bulk mode: evaluate a scraped dataset and rank deals",
+        "done": false
+      }
+    ],
+    "timestamp": "2026-09-13"
   }
 ]
