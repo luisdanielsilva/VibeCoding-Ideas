@@ -73,11 +73,17 @@ description files use. It is not CommonMark and does not try to be:
 - `**bold**`, `*italic*`, `` `code` ``, `[text](url)` (links get `target="_blank" rel="noopener noreferrer"`).
 - `> ` blockquote — styled as an accent-bordered callout, for a lead line or a standout claim.
 - `---` on its own line — a horizontal divider between major parts.
+- ``` fences — monospace block with whitespace preserved, used for the ASCII flow diagrams.
+  Nothing inside a fence is parsed as markdown, and blank lines survive.
+- `|` pipe tables, with an optional `|---|---|` second row marking a header. Cells accept inline
+  markup; write `\|` for a literal pipe inside a cell (Mermaid edge labels need this).
 - Blank line separates blocks. Everything is HTML-escaped first, so markup in a `.md` file renders as
   text rather than executing.
 - Emoji are just text and work anywhere; `descriptions/VC-011.md` uses them as section markers.
-- No tables, images, nested lists or fenced code blocks. Add them to the renderer *and* `style.css`
-  before using them in a description.
+- No images or nested lists. Add them to the renderer *and* `style.css` before using them.
+- Every description follows the same shape: lead callout → problem → an ASCII diagram of how it
+  works → feature/stack tables → a numbered build plan → risks → definition of done. They are
+  written to be handed to an AI as a build brief, not just read.
 
 Styling lives under `.modal-body .full-description` in `style.css`.
 

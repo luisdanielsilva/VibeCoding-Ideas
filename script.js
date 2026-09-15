@@ -58,6 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let paragraph = [];
         let list = null;
         let quote = null;
+        let table = null;
+        let code = null;
 
         const flushParagraph = () => {
             if (!paragraph.length) return;
@@ -76,11 +78,62 @@ document.addEventListener('DOMContentLoaded', () => {
             out.push('<blockquote>' + renderInline(quote.join(' ')) + '</blockquote>');
             quote = null;
         };
-        const flush = () => { flushParagraph(); flushList(); flushQuote(); };
+        const flushTable = () => {
+            if (!table) return;
+            const rows = table;
+            table = null;
+            // A '---|---' second row marks the one above it as a header.
+            const hasHead = rows.length > 1 && rows[1].every(c => /^:?-{2,}:?$/.test(c.trim()));
+            const body = hasHead ? rows.slice(2) : rows;
+            const cell = (tag, c) => '<' + tag + '>' + renderInline(c) + '</' + tag + '>';
+            let html = '<div class="table-scroll"><table>';
+            if (hasHead) html += '<thead><tr>' + rows[0].map(c => cell('th', c)).join('') + '</tr></thead>';
+            html += '<tbody>' + body.map(r => '<tr>' + r.map(c => cell('td', c)).join('') + '</tr>').join('') + '</tbody>';
+            out.push(html + '</table></div>');
+        };
+        const flush = () => { flushParagraph(); flushList(); flushQuote(); flushTable(); };
+        // Cells are split on unescaped pipes only, so a '\\|' can appear inside one
+        // (Mermaid edge labels, table examples) without inventing a column.
+        const splitRow = (line) => {
+            const cells = [];
+            let cell = '';
+            for (let i = 0; i < line.length; i++) {
+                if (line[i] === '\\' && line[i + 1] === '|') { cell += '|'; i++; continue; }
+                if (line[i] === '|') { cells.push(cell); cell = ''; continue; }
+                cell += line[i];
+            }
+            cells.push(cell);
+            // A leading and trailing pipe produce empty outer cells; drop them.
+            if (cells.length && !cells[0].trim()) cells.shift();
+            if (cells.length && !cells[cells.length - 1].trim()) cells.pop();
+            return cells.map(c => c.trim());
+        };
 
         lines.forEach(raw => {
+            // Fenced blocks are handled on the untrimmed line and before everything
+            // else, so indentation and blank lines survive inside a diagram.
+            if (/^\s*```/.test(raw)) {
+                if (code) { out.push('<pre><code>' + escapeHtml(code.join('\n')) + '</code></pre>'); code = null; }
+                else { flush(); code = []; }
+                return;
+            }
+            if (code) { code.push(raw); return; }
+
             const line = raw.trim();
             if (!line) { flush(); return; }
+
+            if (/^(-{3,}|\*{3,})$/.test(line)) { flush(); out.push('<hr>'); return; }
+
+            // Pipe tables: a run of '|' lines, split on unescaped pipes.
+            if (line.startsWith('|')) {
+                flushParagraph();
+                flushList();
+                flushQuote();
+                if (!table) table = [];
+                table.push(splitRow(line));
+                return;
+            }
+            flushTable();
 
             const heading = line.match(/^(#{1,4})\s+(.*)$/);
             if (heading) {
@@ -91,8 +144,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 out.push('<h' + level + '>' + renderInline(heading[2]) + '</h' + level + '>');
                 return;
             }
-
-            if (/^(-{3,}|\*{3,})$/.test(line)) { flush(); out.push('<hr>'); return; }
 
             const quoted = line.match(/^>\s?(.*)$/);
             if (quoted) {
@@ -120,9 +171,12 @@ document.addEventListener('DOMContentLoaded', () => {
             paragraph.push(line);
         });
 
+        // An unterminated fence still renders rather than swallowing the rest.
+        if (code) out.push('<pre><code>' + escapeHtml(code.join('\n')) + '</code></pre>');
         flush();
         return out.join('');
     }
+
 
     function loadDescription(id) {
         if (descriptionCache[id]) return Promise.resolve(descriptionCache[id]);
