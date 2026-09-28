@@ -1296,6 +1296,8 @@
       "Pessimistic / base / optimistic ranges with a sensitivity tornado ranking the assumptions that actually matter",
       "Optional Monte Carlo pass reporting the probability of clearing a target return",
       "Assumptions derived from PropInsight comparables, each displayed with its sample size and editable in place",
+      "Paste an Idealista or Imovirtual link: an LLM reads the listing and fills every input — price, area, typology, condition, floor, elevator, energy rating, condo fees — each field shown with the sentence it came from",
+      "The LLM extracts, the engine calculates — it never produces a return or a verdict, and extracted values are confirmed on a review screen before the analysis runs",
       "Confidence gating — declines to issue a verdict when the comparable set is too thin to support one",
       "Runs standalone: full manual entry with editable per-location defaults when no comparable data exists",
       "Buyer output: fair-value band, percentile rank against comparables, and the price at which the deal stops working",
@@ -1316,6 +1318,7 @@
       "Develop-and-sell-units model: unit mix, build cost, sell-out schedule",
       "Residual land value solver back-solving maximum site price for a target margin",
       "PropInsight client consuming listing() and comparables(), with defaults when absent",
+      "LLM link import for Idealista and Imovirtual, with a pasted-text fallback and a found / inferred / missing review screen",
       "Assumption derivation with visible provenance, override and confidence gating",
       "Side-by-side comparison, scenario ranges, sensitivity tornado and Monte Carlo",
       "Verdict engine: fair-value band, negotiation headroom, conditional conclusion",
@@ -1326,6 +1329,7 @@
     ],
     "advantages": [
       "Answers the comparison question directly — most calculators model a single strategy in isolation",
+      "One pasted link replaces twenty form fields, and picks up the condition, floor and fee details portals only mention in free text",
       "One engine across all five strategies, so the comparison reflects the strategies rather than their assumptions",
       "Residual land value is the number a developer actually negotiates with, and almost no accessible tool produces it",
       "Ties finance cost to measured absorption instead of an optimistic guess about sales pace",
@@ -1340,6 +1344,8 @@
     ],
     "pitfalls": [
       "Garbage in, confident garbage out — a polished PDF lends false authority to bad assumptions, so they must stay visible throughout",
+      "LLM extraction can hallucinate a fee or misread a floor, and the error flows straight into the numbers — every extracted value needs its source quote and a user confirmation",
+      "Idealista and Imovirtual actively block scrapers and restrict automated access in their terms; single user-initiated lookups are the defensible case, with pasted text as the fallback",
       "Comparables are asking prices, not transaction prices: systematically optimistic, and the report must say so every time",
       "Thin or heterogeneous comp sets in small markets cannot support a verdict, and the tool has to decline rather than guess",
       "Comparability is a judgement call — renovation state, floor, view, elevator and noise rarely survive into structured fields",
@@ -1389,6 +1395,22 @@
       },
       {
         "task": "PropInsight client: consume listing() and comparables() over the VC-005 query API",
+        "done": false
+      },
+      {
+        "task": "LLM link import: Idealista or Imovirtual URL → full DealScope input set, each field with its source sentence",
+        "done": false
+      },
+      {
+        "task": "Pasted-listing-text fallback when the page cannot be fetched or PropInsight is absent",
+        "done": false
+      },
+      {
+        "task": "Extraction review screen: found / inferred / missing, editable before the analysis runs",
+        "done": false
+      },
+      {
+        "task": "Cache extractions by listing URL to keep LLM cost per analysis near zero",
         "done": false
       },
       {
