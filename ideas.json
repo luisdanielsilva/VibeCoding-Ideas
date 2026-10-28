@@ -1507,5 +1507,89 @@
       }
     ],
     "timestamp": "2026-09-13"
+  },
+  {
+    "id": "VC-012",
+    "title": "Devoluto",
+    "status": "Concept",
+    "excerpt": "A public, crowd-sourced map of empty state-owned buildings in Portugal — mainland, Açores and Madeira — that could become public housing. Anyone can browse the map and its statistics without an account; registered contributors pin a building on the map or by GPS coordinates and describe it: type, floors, fractions, former use, condition and suspected owner.",
+    "features": [
+      "Interactive map of mainland Portugal with Açores and Madeira as clickable insets",
+      "Pin a building by clicking the map or typing GPS coordinates, with an aerial layer to place it on the actual roof",
+      "Property form: type, floors, number of fractions, former use, suspected owner, ownership evidence, condition, vacant-since year, approximate area, photos and notes",
+      "Distrito, concelho and freguesia computed automatically from the point using the official CAOP boundaries",
+      "Duplicate warning when another pin exists within 50 m",
+      "Open viewing — no account needed to browse, filter, see statistics or download data",
+      "Free registration by email magic link for contributors",
+      "Trust status per pin: reported, confirmed by others, verified, or disputed — shown by colour on the map",
+      "Statistics that follow the active filter: totals, estimated fractions, choropleth by district and municipality, breakdowns by type, former use, owner, condition and vacancy age",
+      "Open-data export as CSV and GeoJSON",
+      "Versioned edit history for every pin, plus moderator tools to merge duplicates and hide abuse"
+    ],
+    "advantages": [
+      "Builds a picture no single official source provides: one current, visible map of empty public buildings",
+      "Local knowledge at national scale — the people who walk past a building every day are the ones who know it is empty",
+      "Anonymous read access and open data make it usable by journalists, researchers, associations and municipalities",
+      "Locations derived from the point keep statistics and map consistent by construction",
+      "Aggregated numbers (fractions, vacancy age, condition by municipality) turn individual reports into a policy argument"
+    ],
+    "pitfalls": [
+      "Ownership is hard to confirm — a private building wrongly labelled as state-owned invites trespass and complaints, so entries must be marked as suspected, carry evidence and be easy to dispute",
+      "Privacy and GDPR: photos must exclude people and plates, contributor identities stay private, and there needs to be a takedown process",
+      "Contributors must be told clearly not to enter buildings or private land",
+      "Open registration attracts spam and vandalism — rate limits, community confirmation and moderation are required from launch",
+      "Phone GPS from the street is imprecise; pins need a manual adjustment step",
+      "Public OpenStreetMap tiles have usage limits — a tile provider is needed before real traffic"
+    ],
+    "stages": [
+      "Read-only map: mainland Portugal with Açores and Madeira insets",
+      "Data model: PostGIS schema, CAOP boundaries, versioned edits",
+      "Accounts: magic-link login and contributor role",
+      "Add-a-pin flow: map or GPS coordinates, property form, duplicate check",
+      "Photo upload with resizing and metadata stripping",
+      "Trust workflow: confirm, dispute, moderator queue, duplicate merging",
+      "Statistics page: totals, choropleth by district/municipality, breakdowns",
+      "Open-data export (CSV and GeoJSON) with a documented licence",
+      "Launch: Portuguese first, English second, mobile-friendly"
+    ],
+    "roadmap": [
+      {
+        "task": "Read-only map: mainland Portugal with Açores and Madeira insets",
+        "done": false
+      },
+      {
+        "task": "Data model: PostGIS schema, CAOP boundaries, versioned edits",
+        "done": false
+      },
+      {
+        "task": "Accounts: magic-link login and contributor role",
+        "done": false
+      },
+      {
+        "task": "Add-a-pin flow: map or GPS coordinates, property form, duplicate check",
+        "done": false
+      },
+      {
+        "task": "Photo upload with resizing and metadata stripping",
+        "done": false
+      },
+      {
+        "task": "Trust workflow: confirm, dispute, moderator queue, duplicate merging",
+        "done": false
+      },
+      {
+        "task": "Statistics page: totals, choropleth by district/municipality, breakdowns",
+        "done": false
+      },
+      {
+        "task": "Open-data export (CSV and GeoJSON) with a documented licence",
+        "done": false
+      },
+      {
+        "task": "Launch: Portuguese first, English second, mobile-friendly",
+        "done": false
+      }
+    ],
+    "timestamp": "2026-10-28"
   }
 ]
