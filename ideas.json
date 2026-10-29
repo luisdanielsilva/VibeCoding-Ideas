@@ -1543,51 +1543,51 @@
       "The self-hosted PMTiles map file is a few hundred MB and needs refreshing now and then; OpenFreeMap is the fallback if hosting it becomes a burden"
     ],
     "stages": [
-      "Read-only map: mainland Portugal with Açores and Madeira insets",
-      "Data model: SQLite schema, CAOP boundaries, versioned edits",
-      "Accounts: magic-link login and contributor role",
-      "Add-a-pin flow: map or GPS coordinates, property form, duplicate check",
-      "Photo upload with resizing and metadata stripping",
-      "Trust workflow: confirm, dispute, moderator queue, duplicate merging",
-      "Statistics page: totals, choropleth by district/municipality, breakdowns",
-      "Open-data export (CSV and GeoJSON) with a documented licence",
-      "Launch: Portuguese first, English second, mobile-friendly"
+      "Read-only map: MapLibre + self-hosted PMTiles, jump buttons for Continente, Açores and Madeira",
+      "Data model: SQLite schema, CAOP 2025 boundaries, locate and pins API",
+      "Accounts: magic-link login, sessions, contributor and moderator roles",
+      "Add-a-pin flow: map, coordinates or geolocation, DGT aerial layer, duplicate check, form",
+      "Trust workflow: confirm, dispute, status rules, moderator verify and hide",
+      "Statistics page: totals, breakdowns and per-concelho table, filter-aware",
+      "Open data: CSV and GeoJSON export, CC BY 4.0 licence page",
+      "MVP launch: Portuguese, mobile-first, safety and privacy notice",
+      "After the MVP: photos, duplicate merging, history page, choropleth, island aerial layers, English"
     ],
     "roadmap": [
       {
-        "task": "Read-only map: mainland Portugal with Açores and Madeira insets",
+        "task": "Read-only map: MapLibre + self-hosted PMTiles, jump buttons for Continente, Açores and Madeira",
         "done": false
       },
       {
-        "task": "Data model: SQLite schema, CAOP boundaries, versioned edits",
+        "task": "Data model: SQLite schema, CAOP 2025 boundaries, locate and pins API",
         "done": false
       },
       {
-        "task": "Accounts: magic-link login and contributor role",
+        "task": "Accounts: magic-link login, sessions, contributor and moderator roles",
         "done": false
       },
       {
-        "task": "Add-a-pin flow: map or GPS coordinates, property form, duplicate check",
+        "task": "Add-a-pin flow: map, coordinates or geolocation, DGT aerial layer, duplicate check, form",
         "done": false
       },
       {
-        "task": "Photo upload with resizing and metadata stripping",
+        "task": "Trust workflow: confirm, dispute, status rules, moderator verify and hide",
         "done": false
       },
       {
-        "task": "Trust workflow: confirm, dispute, moderator queue, duplicate merging",
+        "task": "Statistics page: totals, breakdowns and per-concelho table, filter-aware",
         "done": false
       },
       {
-        "task": "Statistics page: totals, choropleth by district/municipality, breakdowns",
+        "task": "Open data: CSV and GeoJSON export, CC BY 4.0 licence page",
         "done": false
       },
       {
-        "task": "Open-data export (CSV and GeoJSON) with a documented licence",
+        "task": "MVP launch: Portuguese, mobile-first, safety and privacy notice",
         "done": false
       },
       {
-        "task": "Launch: Portuguese first, English second, mobile-friendly",
+        "task": "After the MVP: photos, duplicate merging, history page, choropleth, island aerial layers, English",
         "done": false
       }
     ],
