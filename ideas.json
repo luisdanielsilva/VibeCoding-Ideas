@@ -1515,7 +1515,8 @@
     "excerpt": "A public, crowd-sourced map of empty state-owned buildings in Portugal — mainland, Açores and Madeira — that could become public housing. Anyone can browse the map and its statistics without an account; registered contributors pin a building on the map or by GPS coordinates and describe it: type, floors, fractions, former use, condition and suspected owner.",
     "features": [
       "Interactive map of mainland Portugal with Açores and Madeira as clickable insets",
-      "Pin a building by clicking the map or typing GPS coordinates, with an aerial layer to place it on the actual roof",
+      "Self-hosted OpenStreetMap base map (Protomaps PMTiles) — no API key, no usage limits; OpenFreeMap as a fallback",
+      "Pin a building by clicking the map or typing GPS coordinates, with the official DGT aerial photos to place it on the actual roof",
       "Property form: type, floors, number of fractions, former use, suspected owner, ownership evidence, condition, vacant-since year, approximate area, photos and notes",
       "Distrito, concelho and freguesia computed automatically from the point using the official CAOP boundaries",
       "Duplicate warning when another pin exists within 50 m",
@@ -1539,7 +1540,7 @@
       "Contributors must be told clearly not to enter buildings or private land",
       "Open registration attracts spam and vandalism — rate limits, community confirmation and moderation are required from launch",
       "Phone GPS from the street is imprecise; pins need a manual adjustment step",
-      "Public OpenStreetMap tiles have usage limits — a tile provider is needed before real traffic"
+      "The self-hosted PMTiles map file is a few hundred MB and needs refreshing now and then; OpenFreeMap is the fallback if hosting it becomes a burden"
     ],
     "stages": [
       "Read-only map: mainland Portugal with Açores and Madeira insets",
