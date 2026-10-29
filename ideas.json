@@ -1544,7 +1544,7 @@
     ],
     "stages": [
       "Read-only map: mainland Portugal with Açores and Madeira insets",
-      "Data model: PostGIS schema, CAOP boundaries, versioned edits",
+      "Data model: SQLite schema, CAOP boundaries, versioned edits",
       "Accounts: magic-link login and contributor role",
       "Add-a-pin flow: map or GPS coordinates, property form, duplicate check",
       "Photo upload with resizing and metadata stripping",
@@ -1559,7 +1559,7 @@
         "done": false
       },
       {
-        "task": "Data model: PostGIS schema, CAOP boundaries, versioned edits",
+        "task": "Data model: SQLite schema, CAOP boundaries, versioned edits",
         "done": false
       },
       {
